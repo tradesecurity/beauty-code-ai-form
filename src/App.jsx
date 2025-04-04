@@ -88,6 +88,26 @@ const handleDownloadPDF = () => {
 
   if (form.result) {
     return (
+      <div id="result-report" className="p-6 max-w-xl mx-auto bg-white rounded shadow space-y-4 text-sm">
+        <h1 className="text-2xl font-bold text-gray-800">✨ 당신의 피부 유형</h1>
+        <p className="text-lg">{form.result}</p>
+        <h3 className="text-lg font-semibold text-gray-900">🛍 추천 제품</h3>
+        <ul className="list-disc list-inside space-y-1 text-blue-700">
+          {recommendations[form.result].map(([name, link], idx) => (
+            <li key={idx}><a href={link} target="_blank" rel="noreferrer" className="underline hover:text-blue-500">{name}</a></li>
+          ))}
+        </ul>
+        <div className="flex flex-wrap gap-3 mt-6">
+          <button onClick={() => setForm({ ...form, result: null })} className="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded">
+            다시 진단하기
+          </button>
+          <button onClick={handleDownloadPDF} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+            PDF 저장
+          </button>
+        </div>
+      </div>
+    );
+  }
       <div id="result-report" className="p-4 max-w-xl mx-auto text-sm">
         <h1 className="text-xl font-bold mb-4">✨ 당신의 피부 유형</h1>
         <p className="text-lg mb-4">{form.result}</p>
@@ -113,11 +133,11 @@ const handleDownloadPDF = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 max-w-xl mx-auto text-sm">
+    <form onSubmit={handleSubmit} className="flex flex-col space-y-4 p-4 max-w-xl mx-auto text-sm">
       <h1 className="text-xl font-bold">🔬 BEAUTY CODE AI 설문지</h1>
 
-      <label>성별
-        <select name="gender" onChange={handleChange} required className="block w-full">
+      <label className="block space-y-1 mb-3">성별
+        <select name="gender" onChange={handleChange} required className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option value="남성">남성</option>
           <option value="여성">여성</option>
@@ -125,8 +145,8 @@ const handleDownloadPDF = () => {
         </select>
       </label>
 
-      <label>연령대
-        <select name="age" onChange={handleChange} required className="block w-full">
+      <label className="block space-y-1 mb-3">연령대
+        <select name="age" onChange={handleChange} required className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option>10대</option>
           <option>20대</option>
@@ -136,8 +156,8 @@ const handleDownloadPDF = () => {
         </select>
       </label>
 
-      <label>하루 수분 섭취량
-        <select name="waterIntake" onChange={handleChange} className="block w-full">
+      <label className="block space-y-1 mb-3">하루 수분 섭취량
+        <select name="waterIntake" onChange={handleChange} className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option value="적게 마신다">적게 마신다</option>
           <option value="보통">보통</option>
@@ -145,8 +165,8 @@ const handleDownloadPDF = () => {
         </select>
       </label>
 
-      <label>세안 후 피부 당김
-        <select name="tightness" onChange={handleChange} className="block w-full">
+      <label className="block space-y-1 mb-3">세안 후 피부 당김
+        <select name="tightness" onChange={handleChange} className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option value="없다">없다</option>
           <option value="약간 있다">약간 있다</option>
@@ -154,8 +174,8 @@ const handleDownloadPDF = () => {
         </select>
       </label>
 
-      <label>트러블 빈도
-        <select name="trouble" onChange={handleChange} className="block w-full">
+      <label className="block space-y-1 mb-3">트러블 빈도
+        <select name="trouble" onChange={handleChange} className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option value="거의 없음">거의 없음</option>
           <option value="가끔">가끔</option>
@@ -163,16 +183,16 @@ const handleDownloadPDF = () => {
         </select>
       </label>
 
-      <label>피부 민감도
-        <select name="sensitivity" onChange={handleChange} className="block w-full">
+      <label className="block space-y-1 mb-3">피부 민감도
+        <select name="sensitivity" onChange={handleChange} className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option value="아니다">아니다</option>
           <option value="예">예</option>
         </select>
       </label>
 
-      <label>피지 분비량
-        <select name="sebum" onChange={handleChange} className="block w-full">
+      <label className="block space-y-1 mb-3">피지 분비량
+        <select name="sebum" onChange={handleChange} className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option value="적음">적음</option>
           <option value="보통">보통</option>
@@ -180,8 +200,8 @@ const handleDownloadPDF = () => {
         </select>
       </label>
 
-      <label>T존/U존 특성
-        <select name="tzone" onChange={handleChange} className="block w-full">
+      <label className="block space-y-1 mb-3">T존/U존 특성
+        <select name="tzone" onChange={handleChange} className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option>전체 고르게 중성</option>
           <option>T존 지성 / U존 건성</option>
@@ -189,8 +209,8 @@ const handleDownloadPDF = () => {
         </select>
       </label>
 
-      <label>피부 혈색/피로감
-        <select name="bloodflow" onChange={handleChange} className="block w-full">
+      <label className="block space-y-1 mb-3">피부 혈색/피로감
+        <select name="bloodflow" onChange={handleChange} className="block w-full border px-2 py-1 rounded">
           <option value="">선택</option>
           <option value="맑고 밝다">맑고 밝다</option>
           <option value="약간 칙칙함">약간 칙칙함</option>
