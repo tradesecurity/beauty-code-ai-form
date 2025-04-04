@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-export default function BeautyCodeAISurvey() {
-  // ... simplified code placeholder
-  return <div>피부 설문지</div>;
+export default function App() {
+  return <h1>Beauty Code AI 설문지가 준비되었습니다!</h1>;
 }
