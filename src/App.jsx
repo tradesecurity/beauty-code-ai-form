@@ -133,7 +133,7 @@ const handleDownloadPDF = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col space-y-4 p-4 max-w-xl mx-auto text-sm">
+    <form onSubmit={handleSubmit} className="flex flex-col space-y-4 p-6 max-w-xl mx-auto text-sm bg-white shadow rounded">
       <h1 className="text-xl font-bold">🔬 BEAUTY CODE AI 설문지</h1>
 
       <label className="block space-y-1 mb-3">성별
