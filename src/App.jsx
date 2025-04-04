@@ -6,40 +6,51 @@ export default function App() {
     gender: "",
     age: "",
     waterIntake: "",
-    sleepHours: "",
-    sunExposure: "",
-
-    const recommendations = {
-      "🌊 AQUA-TYPE": ["고보습 수분크림", "수분 마스크팩", "약산성 젤 클렌저"],
-      "🔥 SEBUM-TYPE": ["수분+진정 토너", "유분 조절 크림", "클레이 마스크"],
-      "🌬 SENSITIVE-TYPE": ["저자극 진정 앰플", "무향 약산성 토너", "민감성 전용 선크림"],
-      "🌗 COMBI-TYPE": ["멀티밸런스 크림", "피지 조절 토너", "보습 마스크팩"],
-      "🧊 COOL-DULL-TYPE": ["비타민C 세럼", "각질 제거 패드", "광채 톤업 크림"],
-      "🌟 BALANCE-TYPE": ["기초 수분 라인", "자외선 차단제", "영양크림"]
-    };
-    exercise: "",
     tightness: "",
     trouble: "",
     sensitivity: "",
     sebum: "",
-    concern: [],
     tzone: "",
     bloodflow: "",
     result: null
   });
 
+  const recommendations = {
+    "🌊 AQUA-TYPE": [
+      ["고보습 수분크림", "https://shop.example.com/aqua-cream"],
+      ["수분 마스크팩", "https://shop.example.com/aqua-mask"],
+      ["약산성 젤 클렌저", "https://shop.example.com/gel-cleanser"]
+    ],
+    "🔥 SEBUM-TYPE": [
+      ["수분+진정 토너", "https://shop.example.com/sebum-toner"],
+      ["유분 조절 크림", "https://shop.example.com/oil-control"],
+      ["클레이 마스크", "https://shop.example.com/clay-mask"]
+    ],
+    "🌬 SENSITIVE-TYPE": [
+      ["저자극 진정 앰플", "https://shop.example.com/ampoule"],
+      ["무향 약산성 토너", "https://shop.example.com/mild-toner"],
+      ["민감성 전용 선크림", "https://shop.example.com/sensitive-sun"]
+    ],
+    "🌗 COMBI-TYPE": [
+      ["멀티밸런스 크림", "https://shop.example.com/combi-cream"],
+      ["피지 조절 토너", "https://shop.example.com/sebum-toner"],
+      ["보습 마스크팩", "https://shop.example.com/moist-mask"]
+    ],
+    "🧊 COOL-DULL-TYPE": [
+      ["비타민C 세럼", "https://shop.example.com/vitamin-c"],
+      ["각질 제거 패드", "https://shop.example.com/exfoliate"],
+      ["광채 톤업 크림", "https://shop.example.com/tone-up"]
+    ],
+    "🌟 BALANCE-TYPE": [
+      ["기초 수분 라인", "https://shop.example.com/balance-line"],
+      ["자외선 차단제", "https://shop.example.com/sunblock"],
+      ["영양크림", "https://shop.example.com/nutri-cream"]
+    ]
+  };
+
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
-      setForm((prev) => ({
-        ...prev,
-        concern: checked
-          ? [...prev.concern, value]
-          : prev.concern.filter((c) => c !== value)
-      }));
-    } else {
-      setForm({ ...form, [name]: value });
-    }
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -49,10 +60,9 @@ export default function App() {
   };
 
   const diagnoseSkin = (data) => {
-    const { waterIntake, tightness, sebum, sensitivity, tzone, bloodflow } = data;
-
+    const { waterIntake, tightness, sebum, sensitivity, tzone, bloodflow, trouble } = data;
     if (sensitivity === "예" || bloodflow === "없음") return "🌬 SENSITIVE-TYPE";
-    if (sebum === "많음" && data.trouble === "자주") return "🔥 SEBUM-TYPE";
+    if (sebum === "많음" && trouble === "자주") return "🔥 SEBUM-TYPE";
     if (tzone === "T존 지성 / U존 건성") return "🌗 COMBI-TYPE";
     if (waterIntake === "많이 마신다" && tightness === "당김이 있다") return "🌊 AQUA-TYPE";
     if (bloodflow === "칙칙하고 어둡다") return "🧊 COOL-DULL-TYPE";
@@ -61,21 +71,22 @@ export default function App() {
 
   if (form.result) {
     return (
-
-        <div className="mt-4">
-          <h3 className="font-semibold mb-2">🔍 추천 제품</h3>
-          <ul className="list-disc list-inside">
-            {recommendations[form.result].map((item, idx) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      <div className="p-4 max-w-xl mx-auto">
+      <div className="p-4 max-w-xl mx-auto text-sm">
         <h1 className="text-xl font-bold mb-4">✨ 당신의 피부 유형</h1>
-        <p className="text-lg">{form.result}</p>
+        <p className="text-lg mb-4">{form.result}</p>
+
+        <h3 className="font-semibold mb-2">🛍 추천 제품</h3>
+        <ul className="list-disc list-inside space-y-1">
+          {recommendations[form.result].map(([name, link], idx) => (
+            <li key={idx}>
+              <a href={link} target="_blank" rel="noreferrer" className="text-blue-600 underline">{name}</a>
+            </li>
+          ))}
+        </ul>
+
         <button
           onClick={() => setForm({ ...form, result: null })}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+          className="mt-6 bg-blue-500 text-white px-4 py-2 rounded"
         >
           다시 진단하기
         </button>
@@ -134,7 +145,7 @@ export default function App() {
         </select>
       </label>
 
-      <label>피부 민감도 (붉어짐, 자극 등)
+      <label>피부 민감도
         <select name="sensitivity" onChange={handleChange} className="block w-full">
           <option value="">선택</option>
           <option value="아니다">아니다</option>
