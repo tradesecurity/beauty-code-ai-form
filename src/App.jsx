@@ -1,113 +1,160 @@
 
-import React, { useState, useRef } from "react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import React, { useState } from "react";
 
 export default function App() {
   const [form, setForm] = useState({
-    name: "",
-    skinType: "건성",
-    tightness: "가끔 있다",
-    concerns: ["트러블", "탄력 저하"],
-    recommendation: ["약산성 클렌저", "수분 진정 크림", "민감성 전용 선크림"]
+    gender: "",
+    age: "",
+    waterIntake: "",
+    sleepHours: "",
+    sunExposure: "",
+    exercise: "",
+    tightness: "",
+    trouble: "",
+    sensitivity: "",
+    sebum: "",
+    concern: [],
+    tzone: "",
+    bloodflow: "",
+    result: null
   });
 
-  const [submitted, setSubmitted] = useState(false);
-  const reportRef = useRef();
-
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setForm((prev) => ({
+        ...prev,
+        concern: checked
+          ? [...prev.concern, value]
+          : prev.concern.filter((c) => c !== value)
+      }));
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    const result = diagnoseSkin(form);
+    setForm({ ...form, result });
   };
 
-  const handleDownloadPDF = async () => {
-    const canvas = await html2canvas(reportRef.current);
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF();
-    const width = pdf.internal.pageSize.getWidth();
-    const height = (canvas.height * width) / canvas.width;
-    pdf.addImage(imgData, "PNG", 0, 0, width, height);
-    pdf.save("beauty-code-report.pdf");
+  const diagnoseSkin = (data) => {
+    const { waterIntake, tightness, sebum, sensitivity, tzone, bloodflow } = data;
+
+    if (sensitivity === "예" || bloodflow === "없음") return "🌬 SENSITIVE-TYPE";
+    if (sebum === "많음" && data.trouble === "자주") return "🔥 SEBUM-TYPE";
+    if (tzone === "T존 지성 / U존 건성") return "🌗 COMBI-TYPE";
+    if (waterIntake === "많이 마신다" && tightness === "당김이 있다") return "🌊 AQUA-TYPE";
+    if (bloodflow === "칙칙하고 어둡다") return "🧊 COOL-DULL-TYPE";
+    return "🌟 BALANCE-TYPE";
   };
 
-  if (submitted) {
+  if (form.result) {
     return (
-      <div ref={reportRef} style={{ maxWidth: 480, margin: "0 auto", padding: 20, fontFamily: "sans-serif" }}>
-        <h2>🌟 피부 진단 리포트</h2>
-        <p><strong>이름:</strong> {form.name}</p>
-        <p><strong>피부 타입:</strong> {form.skinType}</p>
-        <p><strong>세안 후 당김:</strong> {form.tightness}</p>
-        <p><strong>피부 고민:</strong> {form.concerns.join(", ")}</p>
-        <p><strong>추천 제품:</strong></p>
-        <ul>
-          {form.recommendation.map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
-        </ul>
-
-        <button onClick={handleDownloadPDF} style={{ marginTop: 20, padding: 10, background: "#444", color: "#fff" }}>
-          PDF 저장하기
+      <div className="p-4 max-w-xl mx-auto">
+        <h1 className="text-xl font-bold mb-4">✨ 당신의 피부 유형</h1>
+        <p className="text-lg">{form.result}</p>
+        <button
+          onClick={() => setForm({ ...form, result: null })}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          다시 진단하기
         </button>
-
-        <div style={{ marginTop: 30 }}>
-          <h4>🔗 공유하기</h4>
-          <a href="https://sharer.kakao.com/talk?url=https://beauty-code-ai-form.vercel.app&text=당신의 피부 진단 결과를 확인해보세요!" target="_blank" rel="noreferrer">
-            카카오톡 공유
-          </a>
-          <br />
-
-        <div style={{
-          marginTop: 40,
-          padding: 16,
-          background: '#fff3f6',
-          borderRadius: 8,
-          border: '1px solid #ff88aa'
-        }}>
-          <h4 style={{ color: '#ff4488' }}>📸 인스타그램 스토리에 공유하기</h4>
-          <p style={{ marginTop: 8 }}>
-            아래 해시태그와 함께 피부 리포트를 <strong>스토리에 공유</strong>해 주세요!<br/>
-            <strong>#피부진단 #beautycodeAI</strong><br/>
-            <strong>@beautycode_ai</strong> 태그도 잊지 마세요 💖
-          </p>
-        </div>
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
-            인스타그램 공유하기
-          </a>
-        </div>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 480, margin: "0 auto", padding: 20 }}>
-      <h2>BEAUTY CODE AI 설문지</h2>
-      <label>
-        이름: <input type="text" name="name" onChange={handleChange} required />
-      </label>
-      <br /><br />
-      <label>
-        피부 타입:
-        <select name="skinType" onChange={handleChange} defaultValue={form.skinType}>
-          <option value="건성">건성</option>
-          <option value="중성">중성</option>
-          <option value="지성">지성</option>
+    <form onSubmit={handleSubmit} className="space-y-4 p-4 max-w-xl mx-auto text-sm">
+      <h1 className="text-xl font-bold">🔬 BEAUTY CODE AI 설문지</h1>
+
+      <label>성별
+        <select name="gender" onChange={handleChange} required className="block w-full">
+          <option value="">선택</option>
+          <option value="남성">남성</option>
+          <option value="여성">여성</option>
+          <option value="기타">기타</option>
         </select>
       </label>
-      <br /><br />
-      <label>
-        세안 후 당김:
-        <select name="tightness" onChange={handleChange} defaultValue={form.tightness}>
-          <option value="항상 있다">항상 있다</option>
-          <option value="가끔 있다">가끔 있다</option>
+
+      <label>연령대
+        <select name="age" onChange={handleChange} required className="block w-full">
+          <option value="">선택</option>
+          <option>10대</option>
+          <option>20대</option>
+          <option>30대</option>
+          <option>40대</option>
+          <option>50대 이상</option>
+        </select>
+      </label>
+
+      <label>하루 수분 섭취량
+        <select name="waterIntake" onChange={handleChange} className="block w-full">
+          <option value="">선택</option>
+          <option value="적게 마신다">적게 마신다</option>
+          <option value="보통">보통</option>
+          <option value="많이 마신다">많이 마신다</option>
+        </select>
+      </label>
+
+      <label>세안 후 피부 당김
+        <select name="tightness" onChange={handleChange} className="block w-full">
+          <option value="">선택</option>
           <option value="없다">없다</option>
+          <option value="약간 있다">약간 있다</option>
+          <option value="당김이 있다">당김이 있다</option>
         </select>
       </label>
-      <br /><br />
-      <button type="submit">제출하기</button>
+
+      <label>트러블 빈도
+        <select name="trouble" onChange={handleChange} className="block w-full">
+          <option value="">선택</option>
+          <option value="거의 없음">거의 없음</option>
+          <option value="가끔">가끔</option>
+          <option value="자주">자주</option>
+        </select>
+      </label>
+
+      <label>피부 민감도 (붉어짐, 자극 등)
+        <select name="sensitivity" onChange={handleChange} className="block w-full">
+          <option value="">선택</option>
+          <option value="아니다">아니다</option>
+          <option value="예">예</option>
+        </select>
+      </label>
+
+      <label>피지 분비량
+        <select name="sebum" onChange={handleChange} className="block w-full">
+          <option value="">선택</option>
+          <option value="적음">적음</option>
+          <option value="보통">보통</option>
+          <option value="많음">많음</option>
+        </select>
+      </label>
+
+      <label>T존/U존 특성
+        <select name="tzone" onChange={handleChange} className="block w-full">
+          <option value="">선택</option>
+          <option>전체 고르게 중성</option>
+          <option>T존 지성 / U존 건성</option>
+          <option>T존 & U존 모두 지성</option>
+        </select>
+      </label>
+
+      <label>피부 혈색/피로감
+        <select name="bloodflow" onChange={handleChange} className="block w-full">
+          <option value="">선택</option>
+          <option value="맑고 밝다">맑고 밝다</option>
+          <option value="약간 칙칙함">약간 칙칙함</option>
+          <option value="칙칙하고 어둡다">칙칙하고 어둡다</option>
+          <option value="없음">없음</option>
+        </select>
+      </label>
+
+      <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">
+        피부 진단 제출
+      </button>
     </form>
   );
 }
