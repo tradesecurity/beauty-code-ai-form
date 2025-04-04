@@ -91,7 +91,7 @@ const handleDownloadPDF = () => {
       <div id="result-report" className="p-6 max-w-xl mx-auto bg-white rounded shadow space-y-4 text-sm">
         <h1 className="text-2xl font-bold text-gray-800">✨ 당신의 피부 유형</h1>
         <p className="text-lg">{form.result}</p>
-        <h3 className="text-lg font-semibold text-gray-900">🛍 추천 제품</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mt-4">🛍 추천 제품</h3>
         <ul className="list-disc list-inside space-y-1 text-blue-700">
           {recommendations[form.result].map(([name, link], idx) => (
             <li key={idx}><a href={link} target="_blank" rel="noreferrer" className="underline hover:text-blue-500">{name}</a></li>
@@ -112,7 +112,7 @@ const handleDownloadPDF = () => {
         <h1 className="text-xl font-bold mb-4">✨ 당신의 피부 유형</h1>
         <p className="text-lg mb-4">{form.result}</p>
 
-        <h3 className="font-semibold mb-2">🛍 추천 제품</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mt-4">🛍 추천 제품</h3>
         <ul className="list-disc list-inside space-y-1">
           {recommendations[form.result].map(([name, link], idx) => (
             <li key={idx}>
