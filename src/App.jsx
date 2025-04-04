@@ -59,6 +59,21 @@ export default function App() {
             카카오톡 공유
           </a>
           <br />
+
+        <div style={{
+          marginTop: 40,
+          padding: 16,
+          background: '#fff3f6',
+          borderRadius: 8,
+          border: '1px solid #ff88aa'
+        }}>
+          <h4 style={{ color: '#ff4488' }}>📸 인스타그램 스토리에 공유하기</h4>
+          <p style={{ marginTop: 8 }}>
+            아래 해시태그와 함께 피부 리포트를 <strong>스토리에 공유</strong>해 주세요!<br/>
+            <strong>#피부진단 #beautycodeAI</strong><br/>
+            <strong>@beautycode_ai</strong> 태그도 잊지 마세요 💖
+          </p>
+        </div>
           <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
             인스타그램 공유하기
           </a>
