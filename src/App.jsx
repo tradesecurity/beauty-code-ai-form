@@ -8,6 +8,15 @@ export default function App() {
     waterIntake: "",
     sleepHours: "",
     sunExposure: "",
+
+    const recommendations = {
+      "🌊 AQUA-TYPE": ["고보습 수분크림", "수분 마스크팩", "약산성 젤 클렌저"],
+      "🔥 SEBUM-TYPE": ["수분+진정 토너", "유분 조절 크림", "클레이 마스크"],
+      "🌬 SENSITIVE-TYPE": ["저자극 진정 앰플", "무향 약산성 토너", "민감성 전용 선크림"],
+      "🌗 COMBI-TYPE": ["멀티밸런스 크림", "피지 조절 토너", "보습 마스크팩"],
+      "🧊 COOL-DULL-TYPE": ["비타민C 세럼", "각질 제거 패드", "광채 톤업 크림"],
+      "🌟 BALANCE-TYPE": ["기초 수분 라인", "자외선 차단제", "영양크림"]
+    };
     exercise: "",
     tightness: "",
     trouble: "",
@@ -52,6 +61,15 @@ export default function App() {
 
   if (form.result) {
     return (
+
+        <div className="mt-4">
+          <h3 className="font-semibold mb-2">🔍 추천 제품</h3>
+          <ul className="list-disc list-inside">
+            {recommendations[form.result].map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </div>
       <div className="p-4 max-w-xl mx-auto">
         <h1 className="text-xl font-bold mb-4">✨ 당신의 피부 유형</h1>
         <p className="text-lg">{form.result}</p>
