@@ -8,6 +8,23 @@ export default function App() {
     waterIntake: "",
     tightness: "",
     trouble: "",
+
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
+const handleDownloadPDF = () => {
+  const reportEl = document.getElementById("result-report");
+  html2canvas(reportEl).then(canvas => {
+    const pdf = new jsPDF();
+    const imgData = canvas.toDataURL("image/png");
+    const width = pdf.internal.pageSize.getWidth();
+    const height = (canvas.height * width) / canvas.width;
+    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+    pdf.setFontSize(10);
+    pdf.text("📎 참고 논문 목록: 1. Baumann, L. (2007). Cosmetic Dermatology: Principles and Practice. McGraw-Hill Education. 2. Berardesca, E., Maibach, H. (2003). Sensitive skin: An overview. Int J Cosmet Sci, 25(2), 65–76. 3. Rawlings, A. V., & Matts, P. J. (2005). Stratum corneum moisturization at the molecular level. J Invest Dermatol, 124(6), 1099–1110. 4. Korting, H. C., et al. (1992). Differences in the skin pH of men and women. Dermatology. 5. Luebberding, S., et al. (2013). Age-related changes in skin barrier function. Int J Cosmet Sci.", 10, height + 10, { maxWidth: 190 });
+    pdf.save("BEAUTY_CODE_AI_피부진단.pdf");
+  });
+};
     sensitivity: "",
     sebum: "",
     tzone: "",
@@ -71,7 +88,7 @@ export default function App() {
 
   if (form.result) {
     return (
-      <div className="p-4 max-w-xl mx-auto text-sm">
+      <div id="result-report" className="p-4 max-w-xl mx-auto text-sm">
         <h1 className="text-xl font-bold mb-4">✨ 당신의 피부 유형</h1>
         <p className="text-lg mb-4">{form.result}</p>
 
@@ -88,6 +105,7 @@ export default function App() {
           onClick={() => setForm({ ...form, result: null })}
           className="mt-6 bg-blue-500 text-white px-4 py-2 rounded"
         >
+        <button onClick={handleDownloadPDF} className="ml-4 bg-green-500 text-white px-4 py-2 rounded">PDF 저장</button>
           다시 진단하기
         </button>
       </div>
