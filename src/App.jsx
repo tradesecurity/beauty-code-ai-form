@@ -1,20 +1,13 @@
+import React from "react";
 
-import React, { useState } from 'react';
-import SurveyForm from './components/SurveyForm';
-import ResultPage from './components/ResultPage';
-
-function App() {
-  const [result, setResult] = useState(null);
-
+const App = () => {
   return (
-    <div className="App">
-      {!result ? (
-        <SurveyForm onSubmit={setResult} />
-      ) : (
-        <ResultPage result={result} />
-      )}
+    <div className="survey-container">
+      <h1>✨ BEAUTY CODE AI 설문지</h1>
+      {/* 설문 내용이 여기에 들어갑니다 */}
+      <button>피부 진단 제출</button>
     </div>
   );
-}
+};
 
 export default App;
