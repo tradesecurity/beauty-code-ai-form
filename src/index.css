@@ -1,34 +1,19 @@
-body { font-family: sans-serif; background-color: #f7f7f7; }
-/* 설문지 컨테이너 스타일 */
 .survey-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  align-items: flex-start;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
-/* 각 질문 항목 스타일 */
 .question-item {
-  width: 100%;
   margin-bottom: 15px;
+  width: 100%;
 }
 
-/* 라벨 스타일 */
 .question-item label {
+  font-weight: bold;
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
-}
-
-/* 입력 필드 스타일 */
-.question-item input,
-.question-item select,
-.question-item textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
