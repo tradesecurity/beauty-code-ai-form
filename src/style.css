@@ -1,0 +1,9 @@
+.survey-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+.question-item {
+  margin-bottom: 1rem;
+}
