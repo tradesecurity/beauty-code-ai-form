@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react';
+import SurveyForm from './SurveyForm';
 
-const App = () => {
+function App() {
   return (
-    <div className="survey-container">
-      <h1>✨ BEAUTY CODE AI 설문지</h1>
-      {/* 설문 내용이 여기에 들어갑니다 */}
-      <button>피부 진단 제출</button>
+    <div className="App">
+      <SurveyForm />
     </div>
   );
-};
+}
 
 export default App;
