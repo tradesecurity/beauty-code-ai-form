@@ -1,12 +1,82 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beauty Code AI</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BEAUTY CODE AI 설문지</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>✨ BEAUTY CODE AI 설문지</h1>
+    <form id="survey-form">
+      <label>성별
+        <select name="gender">
+          <option>선택</option>
+          <option>남성</option>
+          <option>여성</option>
+        </select>
+      </label>
+      <label>연령대
+        <select name="age">
+          <option>선택</option>
+          <option>10대</option>
+          <option>20대</option>
+          <option>30대</option>
+          <option>40대 이상</option>
+        </select>
+      </label>
+      <label>하루 수분 섭취량
+        <select name="water">
+          <option>선택</option>
+          <option>500ml 이하</option>
+          <option>500ml~1L</option>
+          <option>1~2L 이상</option>
+        </select>
+      </label>
+      <label>세안 후 피부 당김
+        <select name="tightness">
+          <option>선택</option>
+          <option>전혀 없음</option>
+          <option>약간 있음</option>
+          <option>심하게 당김</option>
+        </select>
+      </label>
+      <label>피부 민감도
+        <select name="sensitivity">
+          <option>선택</option>
+          <option>민감함</option>
+          <option>보통</option>
+          <option>둔감함</option>
+        </select>
+      </label>
+      <label>T존/U존 특성
+        <select name="tzone">
+          <option>선택</option>
+          <option>T존 지성/U존 건성</option>
+          <option>전체 지성</option>
+          <option>전체 건성</option>
+        </select>
+      </label>
+      <label>피부 혈색/톤
+        <select name="tone">
+          <option>선택</option>
+          <option>창백함</option>
+          <option>붉은기 있음</option>
+          <option>건강한 혈색</option>
+        </select>
+      </label>
+      <button type="submit">피부 진단 제출</button>
+    </form>
+
+    <div id="result" class="hidden">
+      <h2>✨ 피부 진단 결과</h2>
+      <p><strong>피부 타입:</strong> <span id="skin-type">분석 중...</span></p>
+      <h3>추천 제품</h3>
+      <ul id="product-links"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
