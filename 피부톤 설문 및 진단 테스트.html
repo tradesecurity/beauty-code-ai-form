@@ -810,1361 +810,578 @@
       });
       
       // 뷰티 코드 매핑 데이터 및 상세 정보
-const beautyCodeMapping = {
-  // Balanced + Sensitive
-  'BSCT': {
-    name: '밸런스 센서티브 타입',
-    description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블은 적은 편이고 피부 톤이 맑은 편입니다.',
-    summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
-    features: [
-      '붉어짐과 자극에 민감하게 반응함',
-      '유수분 밸런스가 불안정함',
-      '민감성 전용 제품 사용 권장'
-    ],
-    products: [
-      '무향 약산성 진정 토너',
-      '저자극 세라마이드 앰플',
-      '민감성 전용 수분크림 및 선크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안',
-      '저자극 토너로 피부결 정돈',
-      '보습 세럼 사용',
-      '보습 크림으로 피부 보호',
-      'SPF 30 이상 자외선 차단제 사용'
-    ],
-    pmRoutine: [
-      '저자극 클렌저로 세안',
-      '진정 토너 사용',
-      '세라마이드 함유 앰플 사용',
-      '회복을 위한 수면팩 1-2회/주 사용',
-      '충분한 수면으로 피부 회복 돕기'
-    ],
-    analysis: {
-      hydration: '적절한 수분 밸런스 유지',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 거의 없는 깨끗한 피부',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  },
-  'BSTT': {
-    name: '센서티브 타입',
-    description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블이 종종 발생하며 피부 톤이 맑은 편입니다.',
-    summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
-    features: [
-      '붉어짐과 자극에 민감하게 반응함',
-      '유수분 밸런스가 불안정함',
-      '트러블과 민감도를 동시에 관리해야 함'
-    ],
-    products: [
-      '무향 약산성 진정 토너',
-      '저자극 센텔라 함유 앰플',
-      'BHA 성분 함유 스팟 트리트먼트',
-      '진정 효과가 있는 수분크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안',
-      '진정 토너로 피부결 정돈',
-      '가벼운 수분 세럼 사용',
-      '수분크림으로 보습',
-      '자외선 차단제 필수 사용'
-    ],
-    pmRoutine: [
-      '저자극 클렌저로 꼼꼼히 세안',
-      '진정 토너 사용',
-      '트러블 부위에 스팟 트리트먼트 사용',
-      '회복을 위한 진정 크림 사용',
-      '피부 진정 시트 마스크 2-3회/주 사용'
-    ],
-    analysis: {
-      hydration: '적절한 수분 밸런스 유지',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 자주 발생하는 편',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  },
-  // Oily + Sensitive
-  'OSTT': {
-    name: '오일리 센서티브 타입',
-    description: '피지 분비가 많으면서도 외부 자극에 민감한 피부입니다. 트러블이 자주 발생하고 피부 톤은 투명한 편입니다.',
-    summary: '피지 조절과 함께 자극 없는 제품으로 진정 케어가 필요합니다. 과도한 세안은 오히려 유분 분비를 촉진할 수 있습니다.',
-    features: [
-      '번들거림과 트러블이 동시에 발생',
-      '자극적인 성분에 민감하게 반응',
-      '진정과 유분 조절 동시 케어 필요'
-    ],
-    products: [
-      '저자극 약산성 클렌저',
-      '판테놀 또는 진정 성분 함유 토너',
-      '비오일 포뮬러 수분 에센스',
-      '가벼운 텍스처의 진정 젤 크림'
-    ],
-    amRoutine: [
-      '젤 타입 클렌저로 가볍게 세안',
-      '피지 조절 토너 사용',
-      '유분없는 수분 에센스 사용',
-      '오일프리 수분 크림 사용',
-      '매트한 마무리의 선크림 사용'
-    ],
-    pmRoutine: [
-      '오일 클렌저 사용 (더블 클렌징)',
-      '각질 정돈을 위한 저자극 BHA 토너 (주 2-3회)',
-      '피지 조절 세럼 사용',
-      '가벼운 젤 타입 크림 사용',
-      '진정 마스크팩 주 2회 사용'
-    ],
-    analysis: {
-      hydration: '유분기가 많고 번들거림',
-      sensitivity: '외부 자극에 민감하게 반응함',
-      trouble: '트러블이 자주 발생하는 편',
-      tone: '피부 톤이 투명한 편'
-    }
-  },
-  // Dry + Sensitive
-  'DSCT': {
-    name: '드라이 센서티브 타입',
-    description: '건조하고 민감한 피부로, 외부 자극에 예민하게 반응합니다. 트러블은 적은 편이나 건조함으로 인한 불편함이 있습니다.',
-    summary: '피부 장벽이 약해 외부 자극에 민감하고 수분 유지가 어려운 타입입니다. 보습과 진정에 중점을 둔 관리가 필요합니다.',
-    features: [
-      '건조함과 당김이 심함',
-      '자극에 민감하게 반응',
-      '저자극, 고보습 제품 사용 필요'
-    ],
-    products: [
-      '크림 타입 저자극 클렌저',
-      '세라마이드 함유 고보습 토너',
-      '판테놀 진정 에센스',
-      '오일 함유 보습 크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안 혹은 토너 세안',
-      '보습 토너로 수분 공급',
-      '보습 에센스 사용',
-      '고보습 크림으로 수분 잠금',
-      '자외선 차단제 사용'
-    ],
-    pmRoutine: [
-      '크림 타입 클렌저로 부드럽게 세안',
-      '보습 토너 듬뿍 사용',
-      '영양 세럼 사용',
-      '오일 혼합 크림으로 보습 강화',
-      '오버나이트 마스크 주 2-3회 사용'
-    ],
-    analysis: {
-      hydration: '건조한 편으로 수분 공급이 필요함',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 거의 없는 편',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  }
-};
-
-// 모든 가능한 코드 조합 생성 함수
-function generateAllCodes() {
-  const moistureTypes = ['D', 'B', 'O']; // Dry, Balanced, Oily
-  const sensitivityTypes = ['R', 'S']; // Resistant, Sensitive
-  const troubleTypes = ['C', 'T']; // Clear, Trouble
-  const toneTypes = ['M', 'T']; // Matte, Translucent
-  
-  moistureTypes.forEach(m => {
-    sensitivityTypes.forEach(s => {
-      troubleTypes.forEach(t => {
-        toneTypes.forEach(tone => {
-          const code = m + s + t + tone;
-          // 기본 데이터가 없는 경우에만 기본 데이터 생성
-          if (!beautyCodeMapping[code]) {
-            beautyCodeMapping[code] = {
-              name: `${m === 'D' ? '건조' : m === 'B' ? '균형' : '지성'} ${s === 'R' ? '내성' : '민감'} ${t === 'C' ? '클리어' : '트러블'} ${tone === 'M' ? '무광' : '광채'} 타입`,
-              description: `${m === 'D' ? '건조하고' : m === 'B' ? '균형 잡히고' : '지성이고'} ${s === 'R' ? '민감하지 않으며' : '민감하며'}, 트러블이 ${t === 'C' ? '적고' : '많고'} 피부 톤이 ${tone === 'M' ? '탁한' : '맑은'} 편의 피부`,
-              summary: `${m === 'D' ? '보습' : m === 'B' ? '균형 유지' : '유분 조절'}과 ${s === 'S' ? '진정' : '활력'} 케어가 중요합니다. ${t === 'T' ? '트러블 관리에 신경써야 합니다.' : ''}`,
-              features: [
-                `${m === 'D' ? '건조함 개선 필요' : m === 'B' ? '균형 잡힌 유수분 관리' : '과도한 유분 조절 필요'}`,
-                `${s === 'S' ? '자극에 민감하게 반응' : '외부 자극에 강한 피부'}`,
-                `${t === 'T' ? '트러블 관리 필요' : '깨끗한 피부 유지'}`
-              ],
-              products: [
-                `${m === 'D' ? '고보습 토너' : m === 'B' ? '밸런싱 토너' : '피지 조절 토너'}`,
-                `${s === 'S' ? '진정 에센스' : '활력 에센스'}`,
-                `${t === 'T' ? '트러블 케어 세럼' : '영양 공급 세럼'}`
-              ],
-              amRoutine: [
-                `${m === 'D' ? '부드러운 크림 타입 클렌저로 세안' : m === 'B' ? '젤 타입 클렌저로 세안' : '포밍 클렌저로 세안'}`,
-                `${s === 'S' ? '저자극 토너 사용' : '밸런싱 토너 사용'}`,
-                `수분 에센스 사용`,
-                `${m === 'D' ? '보습 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '오일프리 수분 크림 사용'}`,
-                `자외선 차단제 사용`
-              ],
-              pmRoutine: [
-                `${m === 'D' ? '오일 클렌저로 메이크업 제거' : '더블 클렌징으로 메이크업 제거'}`,
-                `${s === 'S' ? '저자극 토너 사용' : '피부결 정돈 토너 사용'}`,
-                `${t === 'T' ? '트러블 케어 세럼 사용' : '영양 세럼 사용'}`,
-                `${m === 'D' ? '영양 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '가벼운 수분 크림 사용'}`,
-                `주 2-3회 ${m === 'D' ? '보습' : t === 'T' ? '진정' : '영양'} 마스크팩 사용`
-              ],
-              analysis: {
-                hydration: m === 'D' ? '건조한 편으로 수분 공급이 필요함' : m === 'B' ? '적절한 수분 밸런스 유지' : '유분기가 많은 편',
-                sensitivity: s === 'R' ? '외부 자극에 강한 편' : '자극에 민감하게 반응하는 편',
-                trouble: t === 'C' ? '트러블이 거의 없는 깨끗한 피부' : '트러블이 자주 발생하는 편',
-                tone: tone === 'M' ? '피부 톤이 다소 탁하거나 균일하지 않음' : '피부 톤이 밝고 투명한 편'
-              }
-            };
+      const beautyCodeMapping = {
+        // 건조 + 민감
+        'DSCT': {
+          name: '드라이 센서티브 클리어 타입',
+          description: '건조하고 민감한 피부로, 외부 자극에 예민하게 반응합니다. 트러블은 적은 편이나 건조함으로 인한 불편함이 있습니다.',
+          summary: '피부 장벽이 약해 외부 자극에 민감하고 수분 유지가 어려운 타입입니다. 보습과 진정에 중점을 둔 관리가 필요합니다.',
+          features: [
+            '건조함과 당김이 심함',
+            '자극에 민감하게 반응',
+            '저자극, 고보습 제품 사용 필요'
+          ],
+          products: [
+            '크림 타입 저자극 클렌저',
+            '세라마이드 함유 고보습 토너',
+            '판테놀 진정 에센스',
+            '오일 함유 보습 크림'
+          ],
+          amRoutine: [
+            '미온수로 가볍게 세안 혹은 토너 세안',
+            '보습 토너로 수분 공급',
+            '보습 에센스 사용',
+            '고보습 크림으로 수분 잠금',
+            '자외선 차단제 사용'
+          ],
+          pmRoutine: [
+            '크림 타입 클렌저로 부드럽게 세안',
+            '보습 토너 듬뿍 사용',
+            '영양 세럼 사용',
+            '오일 혼합 크림으로 보습 강화',
+            '오버나이트 마스크 주 2-3회 사용'
+          ],
+          analysis: {
+            hydration: '건조한 편으로 수분 공급이 필요함',
+            sensitivity: '자극에 민감하게 반응하는 편',
+            trouble: '트러블이 거의 없는 편',
+            tone: '피부 톤이 밝고 투명한 편'
           }
-        });
-      });
-    });
-  });
-}
+        },
 
-// 모든 코드 조합 생성 실행
-generateAllCodes();
-
-// 응답 텍스트 매핑
-const responseTextMapping = {
-  gender: {
-    'female': '■ 여성 □ 남성',
-    'male': '□ 여성 ■ 남성'
-  },
-  age: {
-    '10s': '■10대 □20대 □30대 □40대 □50대 □60대 이상',
-    '20s': '□10대 ■20대 □30대 □40대 □50대 □60대 이상',
-    '30s': '□10대 □20대 ■30대 □40대 □50대 □60대 이상',
-    '40s': '□10대 □20대 □30대 ■40대 □50대 □60대 이상',
-    '50s': '□10대 □20대 □30대 □40대 ■50대 □60대 이상',
-    '60s': '□10대 □20대 □30대 □40대 □50대 ■60대 이상'
-  },
-  hydration: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  tightness: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  trouble: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  sensitivity: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  sebum: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  zone: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  tone: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  }
-};
-
-// 결과 표시 함수
-function displayResults(beautyCode) {
-  // 뷰티 코드 정보 가져오기
-  const codeInfo = beautyCodeMapping[beautyCode] || {
-    name: '기본 타입',
-    description: '피부 분석 결과를 찾을 수 없습니다.',
-    summary: '더 정확한 분석을 위해 다시 진단해보세요.',
-    features: [],
-    products: [],
-    amRoutine: [],
-    pmRoutine: [],
-    analysis: {
-      hydration: '정보 없음',
-      sensitivity: '정보 없음',
-      trouble: '정보 없음',
-      tone: '정보 없음'
-    }
-  };
-  
-  // 응답 정보 표시
-  if (document.querySelector('input[name="gender"]:checked')) {
-    document.getElementById('response-gender').textContent = responseTextMapping.gender[document.querySelector('input[name="gender"]:checked').value];
-  }
-  if (document.querySelector('input[name="age"]:checked')) {
-    document.getElementById('response-age').textContent = responseTextMapping.age[document.querySelector('input[name="age"]:checked').value];
-  }
-  if (document.querySelector('input[name="hydration"]:checked')) {
-    document.getElementById('response-hydration').textContent = responseTextMapping.hydration[document.querySelector('input[name="hydration"]:checked').value];
-  }
-  if (document.querySelector('input[name="tightness"]:checked')) {
-    document.getElementById('response-tightness').textContent = responseTextMapping.tightness[document.querySelector('input[name="tightness"]:checked').value];
-  }
-  if (document.querySelector('input[name="trouble"]:checked')) {
-    document.getElementById('response-trouble').textContent = responseTextMapping.trouble[document.querySelector('input[name="trouble"]:checked').value];
-  }
-  if (document.querySelector('input[name="sensitivity"]:checked')) {
-    document.getElementById('response-sensitivity').textContent = responseTextMapping.sensitivity[document.querySelector('input[name="sensitivity"]:checked').value];
-  }
-  if (document.querySelector('input[name="sebum"]:checked')) {
-    document.getElementById('response-sebum').textContent = responseTextMapping.sebum[document.querySelector('input[name="sebum"]:checked').value];
-  }
-  if (document.querySelector('input[name="zone"]:checked')) {
-    document.getElementById('response-zone').textContent = responseTextMapping.zone[document.querySelector('input[name="zone"]:checked').value];
-  }
-  if (document.querySelector('input[name="tone"]:checked')) {
-    document.getElementById('response-tone').textContent = responseTextMapping.tone[document.querySelector('input[name="tone"]:checked').value];
-  }
-  
-  // 뷰티 코드 표시
-  document.getElementById('skin-type-name').textContent = codeInfo.name;
-  document.getElementById('code-letter-1').textContent = beautyCode[0];
-  document.getElementById('code-letter-2').textContent = beautyCode[1];
-  document.getElementById('code-letter-3').textContent = beautyCode[2];
-  document.getElementById('code-letter-4').textContent = beautyCode[3];
-  document.getElementById('type-description').textContent = codeInfo.summary;
-  
-  // 분석 결과 표시
-  document.getElementById('hydration-result').textContent = codeInfo.analysis.hydration;
-  document.getElementById('sensitivity-result').textContent = codeInfo.analysis.sensitivity;
-  document.getElementById('trouble-result').textContent = codeInfo.analysis.trouble;
-  document.getElementById('tone-result').textContent = codeInfo.analysis.tone;
-  
-  // 특징 목록 표시
-  const featureList = document.getElementById('feature-list');
-  featureList.innerHTML = '';
-  
-  codeInfo.features.forEach(feature => {
-    const featureItem = document.createElement('div');
-    featureItem.className = 'feature-item';
-    featureItem.innerHTML = `
-      <div class="feature-icon">✓</div>
-      <div>${feature}</div>
-    `;
-    featureList.appendChild(featureItem);
-  });
-  
-  // AM 루틴 표시
-  const amRoutine = document.getElementById('am-routine');
-  amRoutine.innerHTML = '';
-  
-  codeInfo.amRoutine.forEach(step => {
-    const li = document.createElement('li');
-    li.textContent = step;
-    amRoutine.appendChild(li);
-  });
-  
-  // PM 루틴 표시
-  const pmRoutine = document.getElementById('pm-routine');
-  pmRoutine.innerHTML = '';
-  
-  codeInfo.pmRoutine.forEach(step => {
-    const li = document.createElement('li');
-    li.textContent = step;
-    pmRoutine.appendChild(li);
-  });
-  
-  // 제품 추천 목록 표시
-  const productList = document.getElementById('product-list');
-  productList.innerHTML = '';
-  
-  codeInfo.products.forEach(product => {
-    const productItem = document.createElement('div');
-    productItem.className = 'product-item';
-    productItem.innerHTML = `
-      <div class="product-icon">🔸</div>
-      <div>${product}</div>
-    `;
-    productList.appendChild(productItem);
-  });
-  
-  // 설문 숨기고 결과 표시
-  surveyContainer.style.display = 'none';
-  resultContainer.style.display = 'block';
-}
-
-// URL 파라미터 확인 및 결과 표시 함수
-function checkUrlParams() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const codeParam = urlParams.get('code');
-  
-  if (codeParam && codeParam.length === 4) {
-    // 유효한 뷰티 코드 형식인지 확인
-    const validFirstChars = ['D', 'B', 'O'];
-    const validSecondChars = ['R', 'S'];
-    const validThirdChars = ['C', 'T'];
-    const validFourthChars = ['M', 'T'];
-    
-    const isValidCode = 
-      validFirstChars.includes(codeParam[0]) && 
-      validSecondChars.includes(codeParam[1]) && 
-      validThirdChars.includes(codeParam[2]) && 
-      validFourthChars.includes(codeParam[3]);
-    
-    if (isValidCode) {
-      displayResults(codeParam);
-      return true;
-    }
-  }
-  return false;
-}
-
-// 페이지 로드 시 URL 파라미터 확인
-if (checkUrlParams()) {
-  surveyContainer.style.display = 'none';
-  resultContainer.style.display = 'block';
-}
-
-// 폼 제출 이벤트 핸들러
-surveyForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // 폼 데이터 수집
-  const hydrationScore = parseInt(document.querySelector('input[name="hydration"]:checked').value);
-  const tightnessScore = parseInt(document.querySelector('input[name="tightness"]:checked').value);
-  const troubleScore = parseInt(document.querySelector('input[name="trouble"]:checked').value);
-  const sensitivityScore = parseInt(document.querySelector('input[name="sensitivity"]:checked').value);
-  const toneScore = parseInt(document.querySelector('input[name="tone"]:checked').value);
-  
-  // 수분 점수 계산 (수분 섭취량 + 세안 당김의 반대값)
-  const moistureScore = (hydrationScore + (6 - tightnessScore)) / 2;
-  
-  // 뷰티 코드 매핑 데이터 및 상세 정보
-const beautyCodeMapping = {
-  // Balanced + Sensitive
-  'BSCT': {
-    name: '밸런스 센서티브 타입',
-    description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블은 적은 편이고 피부 톤이 맑은 편입니다.',
-    summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
-    features: [
-      '붉어짐과 자극에 민감하게 반응함',
-      '유수분 밸런스가 불안정함',
-      '민감성 전용 제품 사용 권장'
-    ],
-    products: [
-      '무향 약산성 진정 토너',
-      '저자극 세라마이드 앰플',
-      '민감성 전용 수분크림 및 선크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안',
-      '저자극 토너로 피부결 정돈',
-      '보습 세럼 사용',
-      '보습 크림으로 피부 보호',
-      'SPF 30 이상 자외선 차단제 사용'
-    ],
-    pmRoutine: [
-      '저자극 클렌저로 세안',
-      '진정 토너 사용',
-      '세라마이드 함유 앰플 사용',
-      '회복을 위한 수면팩 1-2회/주 사용',
-      '충분한 수면으로 피부 회복 돕기'
-    ],
-    analysis: {
-      hydration: '적절한 수분 밸런스 유지',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 거의 없는 깨끗한 피부',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  },
-  'BSTT': {
-    name: '센서티브 타입',
-    description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블이 종종 발생하며 피부 톤이 맑은 편입니다.',
-    summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
-    features: [
-      '붉어짐과 자극에 민감하게 반응함',
-      '유수분 밸런스가 불안정함',
-      '트러블과 민감도를 동시에 관리해야 함'
-    ],
-    products: [
-      '무향 약산성 진정 토너',
-      '저자극 센텔라 함유 앰플',
-      'BHA 성분 함유 스팟 트리트먼트',
-      '진정 효과가 있는 수분크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안',
-      '진정 토너로 피부결 정돈',
-      '가벼운 수분 세럼 사용',
-      '수분크림으로 보습',
-      '자외선 차단제 필수 사용'
-    ],
-    pmRoutine: [
-      '저자극 클렌저로 꼼꼼히 세안',
-      '진정 토너 사용',
-      '트러블 부위에 스팟 트리트먼트 사용',
-      '회복을 위한 진정 크림 사용',
-      '피부 진정 시트 마스크 2-3회/주 사용'
-    ],
-    analysis: {
-      hydration: '적절한 수분 밸런스 유지',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 자주 발생하는 편',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  },
-  // Oily + Sensitive
-  'OSTT': {
-    name: '오일리 센서티브 타입',
-    description: '피지 분비가 많으면서도 외부 자극에 민감한 피부입니다. 트러블이 자주 발생하고 피부 톤은 투명한 편입니다.',
-    summary: '피지 조절과 함께 자극 없는 제품으로 진정 케어가 필요합니다. 과도한 세안은 오히려 유분 분비를 촉진할 수 있습니다.',
-    features: [
-      '번들거림과 트러블이 동시에 발생',
-      '자극적인 성분에 민감하게 반응',
-      '진정과 유분 조절 동시 케어 필요'
-    ],
-    products: [
-      '저자극 약산성 클렌저',
-      '판테놀 또는 진정 성분 함유 토너',
-      '비오일 포뮬러 수분 에센스',
-      '가벼운 텍스처의 진정 젤 크림'
-    ],
-    amRoutine: [
-      '젤 타입 클렌저로 가볍게 세안',
-      '피지 조절 토너 사용',
-      '유분없는 수분 에센스 사용',
-      '오일프리 수분 크림 사용',
-      '매트한 마무리의 선크림 사용'
-    ],
-    pmRoutine: [
-      '오일 클렌저 사용 (더블 클렌징)',
-      '각질 정돈을 위한 저자극 BHA 토너 (주 2-3회)',
-      '피지 조절 세럼 사용',
-      '가벼운 젤 타입 크림 사용',
-      '진정 마스크팩 주 2회 사용'
-    ],
-    analysis: {
-      hydration: '유분기가 많고 번들거림',
-      sensitivity: '외부 자극에 민감하게 반응함',
-      trouble: '트러블이 자주 발생하는 편',
-      tone: '피부 톤이 투명한 편'
-    }
-  },
-  // Dry + Sensitive
-  'DSCT': {
-    name: '드라이 센서티브 타입',
-    description: '건조하고 민감한 피부로, 외부 자극에 예민하게 반응합니다. 트러블은 적은 편이나 건조함으로 인한 불편함이 있습니다.',
-    summary: '피부 장벽이 약해 외부 자극에 민감하고 수분 유지가 어려운 타입입니다. 보습과 진정에 중점을 둔 관리가 필요합니다.',
-    features: [
-      '건조함과 당김이 심함',
-      '자극에 민감하게 반응',
-      '저자극, 고보습 제품 사용 필요'
-    ],
-    products: [
-      '크림 타입 저자극 클렌저',
-      '세라마이드 함유 고보습 토너',
-      '판테놀 진정 에센스',
-      '오일 함유 보습 크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안 혹은 토너 세안',
-      '보습 토너로 수분 공급',
-      '보습 에센스 사용',
-      '고보습 크림으로 수분 잠금',
-      '자외선 차단제 사용'
-    ],
-    pmRoutine: [
-      '크림 타입 클렌저로 부드럽게 세안',
-      '보습 토너 듬뿍 사용',
-      '영양 세럼 사용',
-      '오일 혼합 크림으로 보습 강화',
-      '오버나이트 마스크 주 2-3회 사용'
-    ],
-    analysis: {
-      hydration: '건조한 편으로 수분 공급이 필요함',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 거의 없는 편',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  }
-};
-
-// 모든 가능한 코드 조합 생성 함수
-function generateAllCodes() {
-  const moistureTypes = ['D', 'B', 'O']; // Dry, Balanced, Oily
-  const sensitivityTypes = ['R', 'S']; // Resistant, Sensitive
-  const troubleTypes = ['C', 'T']; // Clear, Trouble
-  const toneTypes = ['M', 'T']; // Matte, Translucent
-  
-  moistureTypes.forEach(m => {
-    sensitivityTypes.forEach(s => {
-      troubleTypes.forEach(t => {
-        toneTypes.forEach(tone => {
-          const code = m + s + t + tone;
-          // 기본 데이터가 없는 경우에만 기본 데이터 생성
-          if (!beautyCodeMapping[code]) {
-            beautyCodeMapping[code] = {
-              name: `${m === 'D' ? '건조' : m === 'B' ? '균형' : '지성'} ${s === 'R' ? '내성' : '민감'} ${t === 'C' ? '클리어' : '트러블'} ${tone === 'M' ? '무광' : '광채'} 타입`,
-              description: `${m === 'D' ? '건조하고' : m === 'B' ? '균형 잡히고' : '지성이고'} ${s === 'R' ? '민감하지 않으며' : '민감하며'}, 트러블이 ${t === 'C' ? '적고' : '많고'} 피부 톤이 ${tone === 'M' ? '탁한' : '맑은'} 편의 피부`,
-              summary: `${m === 'D' ? '보습' : m === 'B' ? '균형 유지' : '유분 조절'}과 ${s === 'S' ? '진정' : '활력'} 케어가 중요합니다. ${t === 'T' ? '트러블 관리에 신경써야 합니다.' : ''}`,
-              features: [
-                `${m === 'D' ? '건조함 개선 필요' : m === 'B' ? '균형 잡힌 유수분 관리' : '과도한 유분 조절 필요'}`,
-                `${s === 'S' ? '자극에 민감하게 반응' : '외부 자극에 강한 피부'}`,
-                `${t === 'T' ? '트러블 관리 필요' : '깨끗한 피부 유지'}`
-              ],
-              products: [
-                `${m === 'D' ? '고보습 토너' : m === 'B' ? '밸런싱 토너' : '피지 조절 토너'}`,
-                `${s === 'S' ? '진정 에센스' : '활력 에센스'}`,
-                `${t === 'T' ? '트러블 케어 세럼' : '영양 공급 세럼'}`
-              ],
-              amRoutine: [
-                `${m === 'D' ? '부드러운 크림 타입 클렌저로 세안' : m === 'B' ? '젤 타입 클렌저로 세안' : '포밍 클렌저로 세안'}`,
-                `${s === 'S' ? '저자극 토너 사용' : '밸런싱 토너 사용'}`,
-                `수분 에센스 사용`,
-                `${m === 'D' ? '보습 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '오일프리 수분 크림 사용'}`,
-                `자외선 차단제 사용`
-              ],
-              pmRoutine: [
-                `${m === 'D' ? '오일 클렌저로 메이크업 제거' : '더블 클렌징으로 메이크업 제거'}`,
-                `${s === 'S' ? '저자극 토너 사용' : '피부결 정돈 토너 사용'}`,
-                `${t === 'T' ? '트러블 케어 세럼 사용' : '영양 세럼 사용'}`,
-                `${m === 'D' ? '영양 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '가벼운 수분 크림 사용'}`,
-                `주 2-3회 ${m === 'D' ? '보습' : t === 'T' ? '진정' : '영양'} 마스크팩 사용`
-              ],
-              analysis: {
-                hydration: m === 'D' ? '건조한 편으로 수분 공급이 필요함' : m === 'B' ? '적절한 수분 밸런스 유지' : '유분기가 많은 편',
-                sensitivity: s === 'R' ? '외부 자극에 강한 편' : '자극에 민감하게 반응하는 편',
-                trouble: t === 'C' ? '트러블이 거의 없는 깨끗한 피부' : '트러블이 자주 발생하는 편',
-                tone: tone === 'M' ? '피부 톤이 다소 탁하거나 균일하지 않음' : '피부 톤이 밝고 투명한 편'
-              }
-            };
+        // 건조 + 민감 + 트러블
+        'DSTT': {
+          name: '드라이 센서티브 트러블 타입',
+          description: '건조하면서도 민감하고 트러블이 있는 복합적인 문제성 피부입니다.',
+          summary: '건조함과 민감함에 트러블까지 있어 관리가 까다로운 피부입니다. 과도한 각질 제거를 자제하고 수분과 진정에 중점을 두어야 합니다.',
+          features: [
+            '건조함과 트러블이 동시에 나타남',
+            '외부 자극에 민감하게 반응',
+            '과도한 각질 제거 자제 필요'
+          ],
+          products: [
+            '약산성 저자극 클렌저',
+            '진정 효과가 있는 토너',
+            'LHA 또는 PHA 성분의 순한 각질 케어 제품',
+            '세라마이드 함유 보습 크림'
+          ],
+          amRoutine: [
+            '미온수로 가볍게 세안',
+            '진정 토너 사용',
+            '가벼운 수분 세럼 사용',
+            '보습 크림 사용',
+            '자외선 차단제 사용'
+          ],
+          pmRoutine: [
+            '저자극 클렌저로 세안',
+            '진정 토너 사용',
+            '트러블 부위에 국소 치료제 사용',
+            '보습 크림으로 마무리',
+            '주 1-2회 수분 마스크팩 사용'
+          ],
+          analysis: {
+            hydration: '건조한 편으로 보습이 필요함',
+            sensitivity: '자극에 민감하게 반응하는 편',
+            trouble: '트러블이 자주 발생하는 편',
+            tone: '피부 톤이 밝은 편'
           }
-        });
-      });
-    });
-  });
-}
+        },
 
-// 모든 코드 조합 생성 실행
-generateAllCodes();
-
-// 응답 텍스트 매핑
-const responseTextMapping = {
-  gender: {
-    'female': '■ 여성 □ 남성',
-    'male': '□ 여성 ■ 남성'
-  },
-  age: {
-    '10s': '■10대 □20대 □30대 □40대 □50대 □60대 이상',
-    '20s': '□10대 ■20대 □30대 □40대 □50대 □60대 이상',
-    '30s': '□10대 □20대 ■30대 □40대 □50대 □60대 이상',
-    '40s': '□10대 □20대 □30대 ■40대 □50대 □60대 이상',
-    '50s': '□10대 □20대 □30대 □40대 ■50대 □60대 이상',
-    '60s': '□10대 □20대 □30대 □40대 □50대 ■60대 이상'
-  },
-  hydration: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  tightness: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  trouble: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  sensitivity: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  sebum: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  zone: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  tone: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  }
-};
-
-// 결과 표시 함수
-function displayResults(beautyCode) {
-  // 뷰티 코드 정보 가져오기
-  const codeInfo = beautyCodeMapping[beautyCode] || {
-    name: '기본 타입',
-    description: '피부 분석 결과를 찾을 수 없습니다.',
-    summary: '더 정확한 분석을 위해 다시 진단해보세요.',
-    features: [],
-    products: [],
-    amRoutine: [],
-    pmRoutine: [],
-    analysis: {
-      hydration: '정보 없음',
-      sensitivity: '정보 없음',
-      trouble: '정보 없음',
-      tone: '정보 없음'
-    }
-  };
-  
-  // 응답 정보 표시
-  if (document.querySelector('input[name="gender"]:checked')) {
-    document.getElementById('response-gender').textContent = responseTextMapping.gender[document.querySelector('input[name="gender"]:checked').value];
-  }
-  if (document.querySelector('input[name="age"]:checked')) {
-    document.getElementById('response-age').textContent = responseTextMapping.age[document.querySelector('input[name="age"]:checked').value];
-  }
-  if (document.querySelector('input[name="hydration"]:checked')) {
-    document.getElementById('response-hydration').textContent = responseTextMapping.hydration[document.querySelector('input[name="hydration"]:checked').value];
-  }
-  if (document.querySelector('input[name="tightness"]:checked')) {
-    document.getElementById('response-tightness').textContent = responseTextMapping.tightness[document.querySelector('input[name="tightness"]:checked').value];
-  }
-  if (document.querySelector('input[name="trouble"]:checked')) {
-    document.getElementById('response-trouble').textContent = responseTextMapping.trouble[document.querySelector('input[name="trouble"]:checked').value];
-  }
-  if (document.querySelector('input[name="sensitivity"]:checked')) {
-    document.getElementById('response-sensitivity').textContent = responseTextMapping.sensitivity[document.querySelector('input[name="sensitivity"]:checked').value];
-  }
-  if (document.querySelector('input[name="sebum"]:checked')) {
-    document.getElementById('response-sebum').textContent = responseTextMapping.sebum[document.querySelector('input[name="sebum"]:checked').value];
-  }
-  if (document.querySelector('input[name="zone"]:checked')) {
-    document.getElementById('response-zone').textContent = responseTextMapping.zone[document.querySelector('input[name="zone"]:checked').value];
-  }
-  if (document.querySelector('input[name="tone"]:checked')) {
-    document.getElementById('response-tone').textContent = responseTextMapping.tone[document.querySelector('input[name="tone"]:checked').value];
-  }
-  
-  // 뷰티 코드 표시
-  document.getElementById('skin-type-name').textContent = codeInfo.name;
-  document.getElementById('code-letter-1').textContent = beautyCode[0];
-  document.getElementById('code-letter-2').textContent = beautyCode[1];
-  document.getElementById('code-letter-3').textContent = beautyCode[2];
-  document.getElementById('code-letter-4').textContent = beautyCode[3];
-  document.getElementById('type-description').textContent = codeInfo.summary;
-  
-  // 분석 결과 표시
-  document.getElementById('hydration-result').textContent = codeInfo.analysis.hydration;
-  document.getElementById('sensitivity-result').textContent = codeInfo.analysis.sensitivity;
-  document.getElementById('trouble-result').textContent = codeInfo.analysis.trouble;
-  document.getElementById('tone-result').textContent = codeInfo.analysis.tone;
-  
-  // 특징 목록 표시
-  const featureList = document.getElementById('feature-list');
-  featureList.innerHTML = '';
-  
-  codeInfo.features.forEach(feature => {
-    const featureItem = document.createElement('div');
-    featureItem.className = 'feature-item';
-    featureItem.innerHTML = `
-      <div class="feature-icon">✓</div>
-      <div>${feature}</div>
-    `;
-    featureList.appendChild(featureItem);
-  });
-  
-  // AM 루틴 표시
-  const amRoutine = document.getElementById('am-routine');
-  amRoutine.innerHTML = '';
-  
-  codeInfo.amRoutine.forEach(step => {
-    const li = document.createElement('li');
-    li.textContent = step;
-    amRoutine.appendChild(li);
-  });
-  
-  // PM 루틴 표시
-  const pmRoutine = document.getElementById('pm-routine');
-  pmRoutine.innerHTML = '';
-  
-  codeInfo.pmRoutine.forEach(step => {
-    const li = document.createElement('li');
-    li.textContent = step;
-    pmRoutine.appendChild(li);
-  });
-  
-  // 제품 추천 목록 표시
-  const productList = document.getElementById('product-list');
-  productList.innerHTML = '';
-  
-  codeInfo.products.forEach(product => {
-    const productItem = document.createElement('div');
-    productItem.className = 'product-item';
-    productItem.innerHTML = `
-      <div class="product-icon">🔸</div>
-      <div>${product}</div>
-    `;
-    productList.appendChild(productItem);
-  });
-  
-  // 설문 숨기고 결과 표시
-  surveyContainer.style.display = 'none';
-  resultContainer.style.display = 'block';
-}
-
-// URL 파라미터 확인 및 결과 표시 함수
-function checkUrlParams() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const codeParam = urlParams.get('code');
-  
-  if (codeParam && codeParam.length === 4) {
-    // 유효한 뷰티 코드 형식인지 확인
-    const validFirstChars = ['D', 'B', 'O'];
-    const validSecondChars = ['R', 'S'];
-    const validThirdChars = ['C', 'T'];
-    const validFourthChars = ['M', 'T'];
-    
-    const isValidCode = 
-      validFirstChars.includes(codeParam[0]) && 
-      validSecondChars.includes(codeParam[1]) && 
-      validThirdChars.includes(codeParam[2]) && 
-      validFourthChars.includes(codeParam[3]);
-    
-    if (isValidCode) {
-      displayResults(codeParam);
-      return true;
-    }
-  }
-  return false;
-}
-
-// 페이지 로드 시 URL 파라미터 확인
-if (checkUrlParams()) {
-  surveyContainer.style.display = 'none';
-  resultContainer.style.display = 'block';
-}
-
-// 폼 제출 이벤트 핸들러
-surveyForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // 폼 데이터 수집
-  const hydrationScore = parseInt(document.querySelector('input[name="hydration"]:checked').value);
-  const tightnessScore = parseInt(document.querySelector('input[name="tightness"]:checked').value);
-  const troubleScore = parseInt(document.querySelector('input[name="trouble"]:checked').value);
-  const sensitivityScore = parseInt(document.querySelector('input[name="sensitivity"]:checked').value);
-  const toneScore = parseInt(document.querySelector('input[name="tone"]:checked').value);
-  
-  // 수분 점수 계산 (수분 섭취량 + 세안 당김의 반대값)
-  const moistureScore = (hydrationScore + (6 - tightnessScore)) / 2;
-  
-  // 뷰티 코드 매핑 데이터 및 상세 정보
-const beautyCodeMapping = {
-  // Balanced + Sensitive
-  'BSCT': {
-    name: '밸런스 센서티브 타입',
-    description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블은 적은 편이고 피부 톤이 맑은 편입니다.',
-    summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
-    features: [
-      '붉어짐과 자극에 민감하게 반응함',
-      '유수분 밸런스가 불안정함',
-      '민감성 전용 제품 사용 권장'
-    ],
-    products: [
-      '무향 약산성 진정 토너',
-      '저자극 세라마이드 앰플',
-      '민감성 전용 수분크림 및 선크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안',
-      '저자극 토너로 피부결 정돈',
-      '보습 세럼 사용',
-      '보습 크림으로 피부 보호',
-      'SPF 30 이상 자외선 차단제 사용'
-    ],
-    pmRoutine: [
-      '저자극 클렌저로 세안',
-      '진정 토너 사용',
-      '세라마이드 함유 앰플 사용',
-      '회복을 위한 수면팩 1-2회/주 사용',
-      '충분한 수면으로 피부 회복 돕기'
-    ],
-    analysis: {
-      hydration: '적절한 수분 밸런스 유지',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 거의 없는 깨끗한 피부',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  },
-  'BSTT': {
-    name: '센서티브 타입',
-    description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블이 종종 발생하며 피부 톤이 맑은 편입니다.',
-    summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
-    features: [
-      '붉어짐과 자극에 민감하게 반응함',
-      '유수분 밸런스가 불안정함',
-      '트러블과 민감도를 동시에 관리해야 함'
-    ],
-    products: [
-      '무향 약산성 진정 토너',
-      '저자극 센텔라 함유 앰플',
-      'BHA 성분 함유 스팟 트리트먼트',
-      '진정 효과가 있는 수분크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안',
-      '진정 토너로 피부결 정돈',
-      '가벼운 수분 세럼 사용',
-      '수분크림으로 보습',
-      '자외선 차단제 필수 사용'
-    ],
-    pmRoutine: [
-      '저자극 클렌저로 꼼꼼히 세안',
-      '진정 토너 사용',
-      '트러블 부위에 스팟 트리트먼트 사용',
-      '회복을 위한 진정 크림 사용',
-      '피부 진정 시트 마스크 2-3회/주 사용'
-    ],
-    analysis: {
-      hydration: '적절한 수분 밸런스 유지',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 자주 발생하는 편',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  },
-  // Oily + Sensitive
-  'OSTT': {
-    name: '오일리 센서티브 타입',
-    description: '피지 분비가 많으면서도 외부 자극에 민감한 피부입니다. 트러블이 자주 발생하고 피부 톤은 투명한 편입니다.',
-    summary: '피지 조절과 함께 자극 없는 제품으로 진정 케어가 필요합니다. 과도한 세안은 오히려 유분 분비를 촉진할 수 있습니다.',
-    features: [
-      '번들거림과 트러블이 동시에 발생',
-      '자극적인 성분에 민감하게 반응',
-      '진정과 유분 조절 동시 케어 필요'
-    ],
-    products: [
-      '저자극 약산성 클렌저',
-      '판테놀 또는 진정 성분 함유 토너',
-      '비오일 포뮬러 수분 에센스',
-      '가벼운 텍스처의 진정 젤 크림'
-    ],
-    amRoutine: [
-      '젤 타입 클렌저로 가볍게 세안',
-      '피지 조절 토너 사용',
-      '유분없는 수분 에센스 사용',
-      '오일프리 수분 크림 사용',
-      '매트한 마무리의 선크림 사용'
-    ],
-    pmRoutine: [
-      '오일 클렌저 사용 (더블 클렌징)',
-      '각질 정돈을 위한 저자극 BHA 토너 (주 2-3회)',
-      '피지 조절 세럼 사용',
-      '가벼운 젤 타입 크림 사용',
-      '진정 마스크팩 주 2회 사용'
-    ],
-    analysis: {
-      hydration: '유분기가 많고 번들거림',
-      sensitivity: '외부 자극에 민감하게 반응함',
-      trouble: '트러블이 자주 발생하는 편',
-      tone: '피부 톤이 투명한 편'
-    }
-  },
-  // Dry + Sensitive
-  'DSCT': {
-    name: '드라이 센서티브 타입',
-    description: '건조하고 민감한 피부로, 외부 자극에 예민하게 반응합니다. 트러블은 적은 편이나 건조함으로 인한 불편함이 있습니다.',
-    summary: '피부 장벽이 약해 외부 자극에 민감하고 수분 유지가 어려운 타입입니다. 보습과 진정에 중점을 둔 관리가 필요합니다.',
-    features: [
-      '건조함과 당김이 심함',
-      '자극에 민감하게 반응',
-      '저자극, 고보습 제품 사용 필요'
-    ],
-    products: [
-      '크림 타입 저자극 클렌저',
-      '세라마이드 함유 고보습 토너',
-      '판테놀 진정 에센스',
-      '오일 함유 보습 크림'
-    ],
-    amRoutine: [
-      '미온수로 가볍게 세안 혹은 토너 세안',
-      '보습 토너로 수분 공급',
-      '보습 에센스 사용',
-      '고보습 크림으로 수분 잠금',
-      '자외선 차단제 사용'
-    ],
-    pmRoutine: [
-      '크림 타입 클렌저로 부드럽게 세안',
-      '보습 토너 듬뿍 사용',
-      '영양 세럼 사용',
-      '오일 혼합 크림으로 보습 강화',
-      '오버나이트 마스크 주 2-3회 사용'
-    ],
-    analysis: {
-      hydration: '건조한 편으로 수분 공급이 필요함',
-      sensitivity: '자극에 민감하게 반응하는 편',
-      trouble: '트러블이 거의 없는 편',
-      tone: '피부 톤이 밝고 투명한 편'
-    }
-  }
-};
-
-// 모든 가능한 코드 조합 생성 함수
-function generateAllCodes() {
-  const moistureTypes = ['D', 'B', 'O']; // Dry, Balanced, Oily
-  const sensitivityTypes = ['R', 'S']; // Resistant, Sensitive
-  const troubleTypes = ['C', 'T']; // Clear, Trouble
-  const toneTypes = ['M', 'T']; // Matte, Translucent
-  
-  moistureTypes.forEach(m => {
-    sensitivityTypes.forEach(s => {
-      troubleTypes.forEach(t => {
-        toneTypes.forEach(tone => {
-          const code = m + s + t + tone;
-          // 기본 데이터가 없는 경우에만 기본 데이터 생성
-          if (!beautyCodeMapping[code]) {
-            beautyCodeMapping[code] = {
-              name: `${m === 'D' ? '건조' : m === 'B' ? '균형' : '지성'} ${s === 'R' ? '내성' : '민감'} ${t === 'C' ? '클리어' : '트러블'} ${tone === 'M' ? '무광' : '광채'} 타입`,
-              description: `${m === 'D' ? '건조하고' : m === 'B' ? '균형 잡히고' : '지성이고'} ${s === 'R' ? '민감하지 않으며' : '민감하며'}, 트러블이 ${t === 'C' ? '적고' : '많고'} 피부 톤이 ${tone === 'M' ? '탁한' : '맑은'} 편의 피부`,
-              summary: `${m === 'D' ? '보습' : m === 'B' ? '균형 유지' : '유분 조절'}과 ${s === 'S' ? '진정' : '활력'} 케어가 중요합니다. ${t === 'T' ? '트러블 관리에 신경써야 합니다.' : ''}`,
-              features: [
-                `${m === 'D' ? '건조함 개선 필요' : m === 'B' ? '균형 잡힌 유수분 관리' : '과도한 유분 조절 필요'}`,
-                `${s === 'S' ? '자극에 민감하게 반응' : '외부 자극에 강한 피부'}`,
-                `${t === 'T' ? '트러블 관리 필요' : '깨끗한 피부 유지'}`
-              ],
-              products: [
-                `${m === 'D' ? '고보습 토너' : m === 'B' ? '밸런싱 토너' : '피지 조절 토너'}`,
-                `${s === 'S' ? '진정 에센스' : '활력 에센스'}`,
-                `${t === 'T' ? '트러블 케어 세럼' : '영양 공급 세럼'}`
-              ],
-              amRoutine: [
-                `${m === 'D' ? '부드러운 크림 타입 클렌저로 세안' : m === 'B' ? '젤 타입 클렌저로 세안' : '포밍 클렌저로 세안'}`,
-                `${s === 'S' ? '저자극 토너 사용' : '밸런싱 토너 사용'}`,
-                `수분 에센스 사용`,
-                `${m === 'D' ? '보습 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '오일프리 수분 크림 사용'}`,
-                `자외선 차단제 사용`
-              ],
-              pmRoutine: [
-                `${m === 'D' ? '오일 클렌저로 메이크업 제거' : '더블 클렌징으로 메이크업 제거'}`,
-                `${s === 'S' ? '저자극 토너 사용' : '피부결 정돈 토너 사용'}`,
-                `${t === 'T' ? '트러블 케어 세럼 사용' : '영양 세럼 사용'}`,
-                `${m === 'D' ? '영양 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '가벼운 수분 크림 사용'}`,
-                `주 2-3회 ${m === 'D' ? '보습' : t === 'T' ? '진정' : '영양'} 마스크팩 사용`
-              ],
-              analysis: {
-                hydration: m === 'D' ? '건조한 편으로 수분 공급이 필요함' : m === 'B' ? '적절한 수분 밸런스 유지' : '유분기가 많은 편',
-                sensitivity: s === 'R' ? '외부 자극에 강한 편' : '자극에 민감하게 반응하는 편',
-                trouble: t === 'C' ? '트러블이 거의 없는 깨끗한 피부' : '트러블이 자주 발생하는 편',
-                tone: tone === 'M' ? '피부 톤이 다소 탁하거나 균일하지 않음' : '피부 톤이 밝고 투명한 편'
-              }
-            };
+        // 균형 + 민감
+        'BSCT': {
+          name: '밸런스 센서티브 클리어 타입',
+          description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블은 적은 편이고 피부 톤이 맑은 편입니다.',
+          summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
+          features: [
+            '붉어짐과 자극에 민감하게 반응함',
+            '유수분 밸런스가 불안정함',
+            '민감성 전용 제품 사용 권장'
+          ],
+          products: [
+            '무향 약산성 진정 토너',
+            '저자극 세라마이드 앰플',
+            '민감성 전용 수분크림 및 선크림'
+          ],
+          amRoutine: [
+            '미온수로 가볍게 세안',
+            '저자극 토너로 피부결 정돈',
+            '보습 세럼 사용',
+            '보습 크림으로 피부 보호',
+            'SPF 30 이상 자외선 차단제 사용'
+          ],
+          pmRoutine: [
+            '저자극 클렌저로 세안',
+            '진정 토너 사용',
+            '세라마이드 함유 앰플 사용',
+            '회복을 위한 수면팩 1-2회/주 사용',
+            '충분한 수면으로 피부 회복 돕기'
+          ],
+          analysis: {
+            hydration: '적절한 수분 밸런스 유지',
+            sensitivity: '자극에 민감하게 반응하는 편',
+            trouble: '트러블이 거의 없는 깨끗한 피부',
+            tone: '피부 톤이 밝고 투명한 편'
           }
+        },
+
+        // 균형 + 민감 + 트러블
+        'BSTT': {
+          name: '밸런스 센서티브 트러블 타입',
+          description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블이 종종 발생하며 피부 톤이 맑은 편입니다.',
+          summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
+          features: [
+            '붉어짐과 자극에 민감하게 반응함',
+            '유수분 밸런스가 불안정함',
+            '트러블과 민감도를 동시에 관리해야 함'
+          ],
+          products: [
+            '무향 약산성 진정 토너',
+            '저자극 센텔라 함유 앰플',
+            'BHA 성분 함유 스팟 트리트먼트',
+            '진정 효과가 있는 수분크림'
+          ],
+          amRoutine: [
+            '미온수로 가볍게 세안',
+            '진정 토너로 피부결 정돈',
+            '가벼운 수분 세럼 사용',
+            '수분크림으로 보습',
+            '자외선 차단제 필수 사용'
+          ],
+          pmRoutine: [
+            '저자극 클렌저로 꼼꼼히 세안',
+            '진정 토너 사용',
+            '트러블 부위에 스팟 트리트먼트 사용',
+            '회복을 위한 진정 크림 사용',
+            '피부 진정 시트 마스크 2-3회/주 사용'
+          ],
+          analysis: {
+            hydration: '적절한 수분 밸런스 유지',
+            sensitivity: '자극에 민감하게 반응하는 편',
+            trouble: '트러블이 자주 발생하는 편',
+            tone: '피부 톤이 밝고 투명한 편'
+          }
+        },
+
+        // 지성 + 민감
+        'OSCT': {
+          name: '오일리 센서티브 클리어 타입',
+          description: '유분은 많으나 트러블은 거의 없는 민감성 피부입니다.',
+          summary: '피지 분비는 많으나 피부 장벽이 약해 자극에 민감하게 반응합니다. 과도한 피지 조절보다는 균형 있는 관리가 중요합니다.',
+          features: [
+            '번들거림이 있으나 트러블은 적음',
+            '자극적인 성분에 민감하게 반응',
+            '피지 조절과 진정을 동시에 고려'
+          ],
+          products: [
+            '약산성 젤 클렌저',
+            '칼라민 함유 진정 토너',
+            '가벼운 오일 프리 수분 에센스',
+            '진정 효과가 있는 매트 젤 크림'
+          ],
+          amRoutine: [
+            '젤 타입 클렌저로 세안',
+            '알코올 프리 토너 사용',
+            '가벼운 수분 에센스 사용',
+            '오일 프리 수분 젤 사용',
+            '자외선 차단제 사용'
+          ],
+          pmRoutine: [
+            '오일 클렌징 후 젤 클렌저로 2차 세안',
+            '진정 토너 사용',
+            '수분 공급 세럼 사용',
+            '가벼운 수분 크림 사용',
+            '주 1-2회 수분 마스크팩 사용'
+          ],
+          analysis: {
+            hydration: '유분은 많으나 수분은 부족할 수 있음',
+            sensitivity: '자극에 민감하게 반응하는 편',
+            trouble: '트러블이 거의 없는 깨끗한 피부',
+            tone: '피부 톤이 밝고 투명한 편'
+          }
+        },
+
+        // 지성 + 민감 + 트러블
+        'OSTT': {
+          name: '오일리 센서티브 트러블 타입',
+          description: '피지 분비가 많으면서도 외부 자극에 민감한 피부입니다. 트러블이 자주 발생하고 피부 톤은 투명한 편입니다.',
+          summary: '피지 조절과 함께 자극 없는 제품으로 진정 케어가 필요합니다. 과도한 세안은 오히려 유분 분비를 촉진할 수 있습니다.',
+          features: [
+            '번들거림과 트러블이 동시에 발생',
+            '자극적인 성분에 민감하게 반응',
+            '진정과 유분 조절 동시 케어 필요'
+          ],
+          products: [
+            '저자극 약산성 클렌저',
+            '판테놀 또는 진정 성분 함유 토너',
+            '비오일 포뮬러 수분 에센스',
+            '가벼운 텍스처의 진정 젤 크림'
+          ],
+          amRoutine: [
+            '젤 타입 클렌저로 가볍게 세안',
+            '피지 조절 토너 사용',
+            '유분없는 수분 에센스 사용',
+            '오일프리 수분 크림 사용',
+            '매트한 마무리의 선크림 사용'
+          ],
+          pmRoutine: [
+            '오일 클렌저 사용 (더블 클렌징)',
+            '각질 정돈을 위한 저자극 BHA 토너 (주 2-3회)',
+            '피지 조절 세럼 사용',
+            '가벼운 젤 타입 크림 사용',
+            '진정 마스크팩 주 2회 사용'
+          ],
+          analysis: {
+            hydration: '유분기가 많고 번들거림',
+            sensitivity: '외부 자극에 민감하게 반응함',
+            trouble: '트러블이 자주 발생하는 편',
+            tone: '피부 톤이 투명한 편'
+          }
+        }
+      };
+
+      // 모든 가능한 코드 조합 생성 함수
+      function generateAllCodes() {
+        const moistureTypes = ['D', 'B', 'O']; // Dry, Balanced, Oily
+        const sensitivityTypes = ['R', 'S']; // Resistant, Sensitive
+        const troubleTypes = ['C', 'T']; // Clear, Trouble
+        const toneTypes = ['M', 'T']; // Matte, Translucent
+        
+        moistureTypes.forEach(m => {
+          sensitivityTypes.forEach(s => {
+            troubleTypes.forEach(t => {
+              toneTypes.forEach(tone => {
+                const code = m + s + t + tone;
+                // 기본 데이터가 없는 경우에만 기본 데이터 생성
+                if (!beautyCodeMapping[code]) {
+                  beautyCodeMapping[code] = {
+                    name: `${m === 'D' ? '건조' : m === 'B' ? '균형' : '지성'} ${s === 'R' ? '내성' : '민감'} ${t === 'C' ? '클리어' : '트러블'} ${tone === 'M' ? '무광' : '광채'} 타입`,
+                    description: `${m === 'D' ? '건조하고' : m === 'B' ? '균형 잡히고' : '지성이고'} ${s === 'R' ? '민감하지 않으며' : '민감하며'}, 트러블이 ${t === 'C' ? '적고' : '많고'} 피부 톤이 ${tone === 'M' ? '탁한' : '맑은'} 편의 피부`,
+                    summary: `${m === 'D' ? '보습' : m === 'B' ? '균형 유지' : '유분 조절'}과 ${s === 'S' ? '진정' : '활력'} 케어가 중요합니다. ${t === 'T' ? '트러블 관리에 신경써야 합니다.' : ''}`,
+                    features: [
+                      `${m === 'D' ? '건조함 개선 필요' : m === 'B' ? '균형 잡힌 유수분 관리' : '과도한 유분 조절 필요'}`,
+                      `${s === 'S' ? '자극에 민감하게 반응' : '외부 자극에 강한 피부'}`,
+                      `${t === 'T' ? '트러블 관리 필요' : '깨끗한 피부 유지'}`
+                    ],
+                    products: [
+                      `${m === 'D' ? '고보습 토너' : m === 'B' ? '밸런싱 토너' : '피지 조절 토너'}`,
+                      `${s === 'S' ? '진정 에센스' : '활력 에센스'}`,
+                      `${t === 'T' ? '트러블 케어 세럼' : '영양 공급 세럼'}`
+                    ],
+                    amRoutine: [
+                      `${m === 'D' ? '부드러운 크림 타입 클렌저로 세안' : m === 'B' ? '젤 타입 클렌저로 세안' : '포밍 클렌저로 세안'}`,
+                      `${s === 'S' ? '저자극 토너 사용' : '밸런싱 토너 사용'}`,
+                      `수분 에센스 사용`,
+                      `${m === 'D' ? '보습 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '오일프리 수분 크림 사용'}`,
+                      `자외선 차단제 사용`
+                    ],
+                    pmRoutine: [
+                      `${m === 'D' ? '오일 클렌저로 메이크업 제거' : '더블 클렌징으로 메이크업 제거'}`,
+                      `${s === 'S' ? '저자극 토너 사용' : '피부결 정돈 토너 사용'}`,
+                      `${t === 'T' ? '트러블 케어 세럼 사용' : '영양 세럼 사용'}`,
+                      `${m === 'D' ? '영양 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '가벼운 수분 크림 사용'}`,
+                      `주 2-3회 ${m === 'D' ? '보습' : t === 'T' ? '진정' : '영양'} 마스크팩 사용`
+                    ],
+                    analysis: {
+                      hydration: m === 'D' ? '건조한 편으로 수분 공급이 필요함' : m === 'B' ? '적절한 수분 밸런스 유지' : '유분기가 많은 편',
+                      sensitivity: s === 'R' ? '외부 자극에 강한 편' : '자극에 민감하게 반응하는 편',
+                      trouble: t === 'C' ? '트러블이 거의 없는 깨끗한 피부' : '트러블이 자주 발생하는 편',
+                      tone: tone === 'M' ? '피부 톤이 다소 탁하거나 균일하지 않음' : '피부 톤이 밝고 투명한 편'
+                    }
+                  };
+                }
+              });
+            });
+          });
         });
+      }
+
+      // 모든 코드 조합 생성 실행
+      generateAllCodes();
+
+      // 응답 텍스트 매핑
+      const responseTextMapping = {
+        gender: {
+          'female': '여성',
+          'male': '남성'
+        },
+        age: {
+          '10s': '10대',
+          '20s': '20대',
+          '30s': '30대',
+          '40s': '40대',
+          '50s': '50대',
+          '60s': '60대 이상'
+        },
+        hydration: {
+          '1': '매우 부족',
+          '2': '부족',
+          '3': '보통',
+          '4': '충분',
+          '5': '매우 충분'
+        },
+        tightness: {
+          '1': '전혀 없음',
+          '2': '약간 있음',
+          '3': '보통',
+          '4': '자주 느껴짐',
+          '5': '항상 당김'
+        },
+        trouble: {
+          '1': '없음',
+          '2': '가끔',
+          '3': '보통',
+          '4': '자주',
+          '5': '항상 있음'
+        },
+        sensitivity: {
+          '1': '매우 둔감',
+          '2': '약간 둔감',
+          '3': '보통',
+          '4': '민감',
+          '5': '매우 민감'
+        },
+        sebum: {
+          '1': '매우 적음',
+          '2': '적음',
+          '3': '보통',
+          '4': '많음',
+          '5': '매우 많음'
+        },
+        zone: {
+          '1': '전체 건성',
+          '2': 'T존만 지성',
+          '3': 'U존만 지성',
+          '4': '전체 지성',
+          '5': '혼합성'
+        },
+        tone: {
+          '1': '매우 밝음',
+          '2': '밝음',
+          '3': '보통',
+          '4': '어두움',
+          '5': '매우 어두움'
+        }
+      };
+
+      // URL 파라미터 확인 및 결과 표시 함수
+      function checkUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const codeParam = urlParams.get('code');
+        
+        if (codeParam && codeParam.length === 4) {
+          // 유효한 뷰티 코드 형식인지 확인
+          const validFirstChars = ['D', 'B', 'O'];
+          const validSecondChars = ['R', 'S'];
+          const validThirdChars = ['C', 'T'];
+          const validFourthChars = ['M', 'T'];
+          
+          const isValidCode = 
+            validFirstChars.includes(codeParam[0]) && 
+            validSecondChars.includes(codeParam[1]) && 
+            validThirdChars.includes(codeParam[2]) && 
+            validFourthChars.includes(codeParam[3]);
+          
+          if (isValidCode) {
+            displayResults(codeParam);
+            return true;
+          }
+        }
+        return false;
+      }
+      
+      // 페이지 로드 시 URL 파라미터 확인
+      if (checkUrlParams()) {
+        surveyContainer.style.display = 'none';
+        resultContainer.style.display = 'block';
+      }
+      
+      // 폼 제출 이벤트 핸들러
+      surveyForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 폼 데이터 수집
+        const hydrationScore = parseInt(document.querySelector('input[name="hydration"]:checked').value);
+        const tightnessScore = parseInt(document.querySelector('input[name="tightness"]:checked').value);
+        const troubleScore = parseInt(document.querySelector('input[name="trouble"]:checked').value);
+        const sensitivityScore = parseInt(document.querySelector('input[name="sensitivity"]:checked').value);
+        const sebumScore = parseInt(document.querySelector('input[name="sebum"]:checked').value);
+        const zoneScore = parseInt(document.querySelector('input[name="zone"]:checked').value);
+        const toneScore = parseInt(document.querySelector('input[name="tone"]:checked').value);
+        
+        // 수분 점수 계산 (수분 섭취량 + 세안 당김의 반대값)
+        const moistureScore = (hydrationScore + (6 - tightnessScore) + (6 - sebumScore) + (6 - zoneScore)) / 4;
+        
+        // 뷰티 코드 생성
+        let beautyCode = '';
+        
+        // 첫 번째 자리: 수분 상태
+        if (moistureScore <= 2.5) {
+          beautyCode += 'D'; // Dry
+        } else if (moistureScore <= 3.5) {
+          beautyCode += 'B'; // Balanced
+        } else {
+          beautyCode += 'O'; // Oily
+        }
+        
+        // 두 번째 자리: 민감도
+        if (sensitivityScore <= 2.5) {
+          beautyCode += 'R'; // Resistant
+        } else {
+          beautyCode += 'S'; // Sensitive
+        }
+        
+        // 세 번째 자리: 트러블 빈도
+        if (troubleScore <= 2.5) {
+          beautyCode += 'C'; // Clear
+        } else {
+          beautyCode += 'T'; // Trouble
+        }
+        
+        // 네 번째 자리: 피부 톤/혈색
+        if (toneScore <= 2.5) {
+          beautyCode += 'M'; // Matte
+        } else {
+          beautyCode += 'T'; // Translucent
+        }
+        
+        // 결과 표시
+        displayResults(beautyCode);
+        
+        // URL에 코드 추가
+        const url = new URL(window.location);
+        url.searchParams.set('code', beautyCode);
+        window.history.replaceState({}, '', url);
       });
-    });
-  });
-}
-
-// 모든 코드 조합 생성 실행
-generateAllCodes();
-
-// 응답 텍스트 매핑
-const responseTextMapping = {
-  gender: {
-    'female': '■ 여성 □ 남성',
-    'male': '□ 여성 ■ 남성'
-  },
-  age: {
-    '10s': '■10대 □20대 □30대 □40대 □50대 □60대 이상',
-    '20s': '□10대 ■20대 □30대 □40대 □50대 □60대 이상',
-    '30s': '□10대 □20대 ■30대 □40대 □50대 □60대 이상',
-    '40s': '□10대 □20대 □30대 ■40대 □50대 □60대 이상',
-    '50s': '□10대 □20대 □30대 □40대 ■50대 □60대 이상',
-    '60s': '□10대 □20대 □30대 □40대 □50대 ■60대 이상'
-  },
-  hydration: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  tightness: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  trouble: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  sensitivity: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  sebum: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  zone: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  },
-  tone: {
-    '1': '5가지 선택 항목으로 만들어짐',
-    '2': '5가지 선택 항목으로 만들어짐',
-    '3': '5가지 선택 항목으로 만들어짐',
-    '4': '5가지 선택 항목으로 만들어짐',
-    '5': '5가지 선택 항목으로 만들어짐'
-  }
-};
-
-// 결과 표시 함수
-function displayResults(beautyCode) {
-  // 뷰티 코드 정보 가져오기
-  const codeInfo = beautyCodeMapping[beautyCode] || {
-    name: '기본 타입',
-    description: '피부 분석 결과를 찾을 수 없습니다.',
-    summary: '더 정확한 분석을 위해 다시 진단해보세요.',
-    features: [],
-    products: [],
-    amRoutine: [],
-    pmRoutine: [],
-    analysis: {
-      hydration: '정보 없음',
-      sensitivity: '정보 없음',
-      trouble: '정보 없음',
-      tone: '정보 없음'
-    }
-  };
-  
-  // 응답 정보 표시
-  if (document.querySelector('input[name="gender"]:checked')) {
-    document.getElementById('response-gender').textContent = responseTextMapping.gender[document.querySelector('input[name="gender"]:checked').value];
-  }
-  if (document.querySelector('input[name="age"]:checked')) {
-    document.getElementById('response-age').textContent = responseTextMapping.age[document.querySelector('input[name="age"]:checked').value];
-  }
-  if (document.querySelector('input[name="hydration"]:checked')) {
-    document.getElementById('response-hydration').textContent = responseTextMapping.hydration[document.querySelector('input[name="hydration"]:checked').value];
-  }
-  if (document.querySelector('input[name="tightness"]:checked')) {
-    document.getElementById('response-tightness').textContent = responseTextMapping.tightness[document.querySelector('input[name="tightness"]:checked').value];
-  }
-  if (document.querySelector('input[name="trouble"]:checked')) {
-    document.getElementById('response-trouble').textContent = responseTextMapping.trouble[document.querySelector('input[name="trouble"]:checked').value];
-  }
-  if (document.querySelector('input[name="sensitivity"]:checked')) {
-    document.getElementById('response-sensitivity').textContent = responseTextMapping.sensitivity[document.querySelector('input[name="sensitivity"]:checked').value];
-  }
-  if (document.querySelector('input[name="sebum"]:checked')) {
-    document.getElementById('response-sebum').textContent = responseTextMapping.sebum[document.querySelector('input[name="sebum"]:checked').value];
-  }
-  if (document.querySelector('input[name="zone"]:checked')) {
-    document.getElementById('response-zone').textContent = responseTextMapping.zone[document.querySelector('input[name="zone"]:checked').value];
-  }
-  if (document.querySelector('input[name="tone"]:checked')) {
-    document.getElementById('response-tone').textContent = responseTextMapping.tone[document.querySelector('input[name="tone"]:checked').value];
-  }
-  
-  // 뷰티 코드 표시
-  document.getElementById('skin-type-name').textContent = codeInfo.name;
-  document.getElementById('code-letter-1').textContent = beautyCode[0];
-  document.getElementById('code-letter-2').textContent = beautyCode[1];
-  document.getElementById('code-letter-3').textContent = beautyCode[2];
-  document.getElementById('code-letter-4').textContent = beautyCode[3];
-  document.getElementById('type-description').textContent = codeInfo.summary;
-  
-  // 분석 결과 표시
-  document.getElementById('hydration-result').textContent = codeInfo.analysis.hydration;
-  document.getElementById('sensitivity-result').textContent = codeInfo.analysis.sensitivity;
-  document.getElementById('trouble-result').textContent = codeInfo.analysis.trouble;
-  document.getElementById('tone-result').textContent = codeInfo.analysis.tone;
-  
-  // 특징 목록 표시
-  const featureList = document.getElementById('feature-list');
-  featureList.innerHTML = '';
-  
-  codeInfo.features.forEach(feature => {
-    const featureItem = document.createElement('div');
-    featureItem.className = 'feature-item';
-    featureItem.innerHTML = `
-      <div class="feature-icon">✓</div>
-      <div>${feature}</div>
-    `;
-    featureList.appendChild(featureItem);
-  });
-  
-  // AM 루틴 표시
-  const amRoutine = document.getElementById('am-routine');
-  amRoutine.innerHTML = '';
-  
-  codeInfo.amRoutine.forEach(step => {
-    const li = document.createElement('li');
-    li.textContent = step;
-    amRoutine.appendChild(li);
-  });
-  
-  // PM 루틴 표시
-  const pmRoutine = document.getElementById('pm-routine');
-  pmRoutine.innerHTML = '';
-  
-  codeInfo.pmRoutine.forEach(step => {
-    const li = document.createElement('li');
-    li.textContent = step;
-    pmRoutine.appendChild(li);
-  });
-  
-  // 제품 추천 목록 표시
-  const productList = document.getElementById('product-list');
-  productList.innerHTML = '';
-  
-  codeInfo.products.forEach(product => {
-    const productItem = document.createElement('div');
-    productItem.className = 'product-item';
-    productItem.innerHTML = `
-      <div class="product-icon">🔸</div>
-      <div>${product}</div>
-    `;
-    productList.appendChild(productItem);
-  });
-  
-  // 설문 숨기고 결과 표시
-  surveyContainer.style.display = 'none';
-  resultContainer.style.display = 'block';
-}
-
-// URL 파라미터 확인 및 결과 표시 함수
-function checkUrlParams() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const codeParam = urlParams.get('code');
-  
-  if (codeParam && codeParam.length === 4) {
-    // 유효한 뷰티 코드 형식인지 확인
-    const validFirstChars = ['D', 'B', 'O'];
-    const validSecondChars = ['R', 'S'];
-    const validThirdChars = ['C', 'T'];
-    const validFourthChars = ['M', 'T'];
-    
-    const isValidCode = 
-      validFirstChars.includes(codeParam[0]) && 
-      validSecondChars.includes(codeParam[1]) && 
-      validThirdChars.includes(codeParam[2]) && 
-      validFourthChars.includes(codeParam[3]);
-    
-    if (isValidCode) {
-      displayResults(codeParam);
-      return true;
-    }
-  }
-  return false;
-}
-
-// 페이지 로드 시 URL 파라미터 확인
-if (checkUrlParams()) {
-  surveyContainer.style.display = 'none';
-  resultContainer.style.display = 'block';
-}
-
-// 폼 제출 이벤트 핸들러
-surveyForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // 폼 데이터 수집
-  const hydrationScore = parseInt(document.querySelector('input[name="hydration"]:checked').value);
-  const tightnessScore = parseInt(document.querySelector('input[name="tightness"]:checked').value);
-  const troubleScore = parseInt(document.querySelector('input[name="trouble"]:checked').value);
-  const sensitivityScore = parseInt(document.querySelector('input[name="sensitivity"]:checked').value);
-  const toneScore = parseInt(document.querySelector('input[name="tone"]:checked').value);
-  
-  // 수분 점수 계산 (수분 섭취량 + 세안 당김의 반대값)
-  const moistureScore = (hydrationScore + (6 - tightnessScore)) / 2;
-  
-  // 뷰티 코드 생성
-  let beautyCode = '';
-  
-  // 첫 번째 자리: 수분 상태
-  if (moistureScore <= 2.5) {
-    beautyCode += 'D'; // Dry
-  } else if (moistureScore <= 3.4) {
-    beautyCode += 'B'; // Balanced
-  } else {
-    beautyCode += 'O'; // Oily
-  }
-  
-  // 두 번째 자리: 민감도
-  if (sensitivityScore <= 2.5) {
-    beautyCode += 'R'; // Resistant
-  } else {
-    beautyCode += 'S'; // Sensitive
-  }
-  
-  // 세 번째 자리: 트러블 빈도
-  if (troubleScore <= 2.5) {
-    beautyCode += 'C'; // Clear
-  } else {
-    beautyCode += 'T'; // Trouble
-  }
-  
-  // 네 번째 자리: 피부 톤/혈색
-  if (toneScore <= 2.5) {
-    beautyCode += 'M'; // Matte
-  } else {
-    beautyCode += 'T'; // Translucent
-  }
-  
-  // 결과 표시
-  displayResults(beautyCode);
-});
-
-// 인쇄 버튼 이벤트 리스너
-printBtn.addEventListener('click', function() {
-  window.print();
-});
-
-// 재시작 버튼 이벤트 리스너
-restartBtn.addEventListener('click', function() {
-  surveyForm.reset();
-  resultContainer.style.display = 'none';
-  surveyContainer.style.display = 'block';
-  progressBar.style.width = '0%';
-  
-  // URL에서 코드 파라미터 제거
-  const url = new URL(window.location);
-  url.searchParams.delete('code');
-  window.history.replaceState({}, '', url);
-});
+      
+      // 인쇄 버튼 이벤트 리스너
+      printBtn.addEventListener('click', function() {
+        window.print();
+      });
+      
+      // 재시작 버튼 이벤트 리스너
+      restartBtn.addEventListener('click', function() {
+        surveyForm.reset();
+        resultContainer.style.display = 'none';
+        surveyContainer.style.display = 'block';
+        progressBar.style.width = '0%';
+        
+        // URL에서 코드 파라미터 제거
+        const url = new URL(window.location);
+        url.searchParams.delete('code');
+        window.history.replaceState({}, '', url);
+      });
+      
+      // 결과 표시 함수
+      function displayResults(beautyCode) {
+        // 뷰티 코드 정보 가져오기
+        const codeInfo = beautyCodeMapping[beautyCode] || {
+          name: '기본 타입',
+          description: '피부 분석 결과를 찾을 수 없습니다.',
+          summary: '더 정확한 분석을 위해 다시 진단해보세요.',
+          features: [],
+          products: [],
+          amRoutine: [],
+          pmRoutine: [],
+          analysis: {
+            hydration: '정보 없음',
+            sensitivity: '정보 없음',
+            trouble: '정보 없음',
+            tone: '정보 없음'
+          }
+        };
+        
+        // 응답 정보 표시
+        if (document.querySelector('input[name="gender"]:checked')) {
+          document.getElementById('response-gender').textContent = responseTextMapping.gender[document.querySelector('input[name="gender"]:checked').value];
+        }
+        if (document.querySelector('input[name="age"]:checked')) {
+          document.getElementById('response-age').textContent = responseTextMapping.age[document.querySelector('input[name="age"]:checked').value];
+        }
+        if (document.querySelector('input[name="hydration"]:checked')) {
+          document.getElementById('response-hydration').textContent = responseTextMapping.hydration[document.querySelector('input[name="hydration"]:checked').value];
+        }
+        if (document.querySelector('input[name="tightness"]:checked')) {
+          document.getElementById('response-tightness').textContent = responseTextMapping.tightness[document.querySelector('input[name="tightness"]:checked').value];
+        }
+        if (document.querySelector('input[name="trouble"]:checked')) {
+          document.getElementById('response-trouble').textContent = responseTextMapping.trouble[document.querySelector('input[name="trouble"]:checked').value];
+        }
+        if (document.querySelector('input[name="sensitivity"]:checked')) {
+          document.getElementById('response-sensitivity').textContent = responseTextMapping.sensitivity[document.querySelector('input[name="sensitivity"]:checked').value];
+        }
+        if (document.querySelector('input[name="sebum"]:checked')) {
+          document.getElementById('response-sebum').textContent = responseTextMapping.sebum[document.querySelector('input[name="sebum"]:checked').value];
+        }
+        if (document.querySelector('input[name="zone"]:checked')) {
+          document.getElementById('response-zone').textContent = responseTextMapping.zone[document.querySelector('input[name="zone"]:checked').value];
+        }
+        if (document.querySelector('input[name="tone"]:checked')) {
+          document.getElementById('response-tone').textContent = responseTextMapping.tone[document.querySelector('input[name="tone"]:checked').value];
+        }
+        
+        // 뷰티 코드 표시
+        document.getElementById('skin-type-name').textContent = codeInfo.name;
+        document.getElementById('code-letter-1').textContent = beautyCode[0];
+        document.getElementById('code-letter-2').textContent = beautyCode[1];
+        document.getElementById('code-letter-3').textContent = beautyCode[2];
+        document.getElementById('code-letter-4').textContent = beautyCode[3];
+        document.getElementById('type-description').textContent = codeInfo.summary;
+        
+        // 분석 결과 표시
+        document.getElementById('hydration-result').textContent = codeInfo.analysis.hydration;
+        document.getElementById('sensitivity-result').textContent = codeInfo.analysis.sensitivity;
+        document.getElementById('trouble-result').textContent = codeInfo.analysis.trouble;
+        document.getElementById('tone-result').textContent = codeInfo.analysis.tone;
+        
+        // 특징 목록 표시
+        const featureList = document.getElementById('feature-list');
+        featureList.innerHTML = '';
+        
+        codeInfo.features.forEach(feature => {
+          const featureItem = document.createElement('div');
+          featureItem.className = 'feature-item';
+          featureItem.innerHTML = `
+            <div class="feature-icon">✓</div>
+            <div>${feature}</div>
+          `;
+          featureList.appendChild(featureItem);
+        });
+        
+        // AM 루틴 표시
+        const amRoutine = document.getElementById('am-routine');
+        amRoutine.innerHTML = '';
+        
+        codeInfo.amRoutine.forEach(step => {
+          const li = document.createElement('li');
+          li.textContent = step;
+          amRoutine.appendChild(li);
+        });
+        
+        // PM 루틴 표시
+        const pmRoutine = document.getElementById('pm-routine');
+        pmRoutine.innerHTML = '';
+        
+        codeInfo.pmRoutine.forEach(step => {
+          const li = document.createElement('li');
+          li.textContent = step;
+          pmRoutine.appendChild(li);
+        });
+        
+        // 제품 추천 목록 표시
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = '';
+        
+        codeInfo.products.forEach(product => {
+          const productItem = document.createElement('div');
+          productItem.className = 'product-item';
+          productItem.innerHTML = `
+            <div class="product-icon">🔸</div>
+            <div>${product}</div>
+          `;
+          productList.appendChild(productItem);
+        });
+        
+        // 설문 숨기고 결과 표시
+        surveyContainer.style.display = 'none';
+        resultContainer.style.display = 'block';
+      }
