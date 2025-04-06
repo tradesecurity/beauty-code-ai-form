@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>피부 코드 진단 시스템</title>
   <style>
+    /* 글꼴 추가 */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+    
     :root {
       --primary-color: #3f51b5;
       --secondary-color: #7986cb;
@@ -25,6 +28,10 @@
       background-color: #f5f5f5;
       color: var(--dark-color);
       line-height: 1.6;
+    }
+    
+    body.printing {
+      background-color: white;
     }
     
     .container {
@@ -325,19 +332,91 @@
       
       body {
         background-color: white;
+        margin: 0;
+        padding: 0;
       }
       
       .container {
         max-width: 100%;
-        padding: 0;
+        padding: 15px;
+        margin: 0;
       }
       
       .card {
         box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        page-break-inside: avoid;
+      }
+      
+      header {
+        margin-bottom: 20px;
+      }
+      
+      .report-header {
+        margin-bottom: 20px;
+      }
+      
+      .report-title h1 {
+        font-size: 1.5rem;
+      }
+      
+      .beauty-code {
+        margin: 15px 0;
+        page-break-inside: avoid;
+      }
+      
+      .beauty-code-letter {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
       }
       
       .type-description, .care-routine, .tip-box {
         border-left: 1px solid #ddd;
+        page-break-inside: avoid;
+        margin: 10px 0;
+      }
+      
+      .section-title {
+        margin: 20px 0 10px;
+        page-break-after: avoid;
+      }
+      
+      .analysis-table, .checklist-table {
+        width: 100%;
+        page-break-inside: avoid;
+        margin: 15px 0;
+      }
+      
+      .analysis-table th {
+        background-color: #3f51b5 !important;
+        color: white !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .feature-list, .product-recommendations {
+        page-break-inside: avoid;
+      }
+      
+      .care-routine {
+        background-color: #e8f5e9 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .tip-box {
+        background-color: #fff8e1 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .footer-note {
+        margin-top: 20px;
       }
     }
     
@@ -383,6 +462,20 @@
       <h1>피부 코드 진단 시스템</h1>
       <p>아래 설문에 응답하여 당신만의 뷰티 코드를 확인해보세요!</p>
     </header>
+    
+    <!-- 크롬에서 PDF 저장 방법 안내 -->
+    <div id="print-guide" class="card no-print" style="background-color: #e3f2fd; margin-bottom: 20px; display: none;">
+      <h3 style="color: #1565c0;">PDF 저장 가이드</h3>
+      <p>결과를 PDF로 저장하려면:</p>
+      <ol>
+        <li>"결과 PDF 저장" 버튼을 클릭합니다.</li>
+        <li>인쇄 대화 상자에서 대상을 <strong>"PDF로 저장"</strong>으로 선택합니다.</li>
+        <li>적절한 이름과 저장 위치를 선택합니다.</li>
+        <li>"저장" 버튼을 클릭합니다.</li>
+      </ol>
+      <p>참고: 모바일 기기에서는 PDF 저장 방법이 다를 수 있습니다.</p>
+      <button id="close-guide" style="background-color: #1565c0; margin: 10px auto;">안내 닫기</button>
+    </div>
     
     <div id="survey-container" class="card">
       <h2>피부 설문지</h2>
@@ -1253,9 +1346,50 @@
         window.history.replaceState({}, '', url);
       });
       
+      // PDF 저장 안내 관련
+      const printGuide = document.getElementById('print-guide');
+      const closeGuideBtn = document.getElementById('close-guide');
+      
+      // 안내 닫기 버튼 이벤트 리스너
+      closeGuideBtn.addEventListener('click', function() {
+        printGuide.style.display = 'none';
+      });
+      
       // 인쇄 버튼 이벤트 리스너
       printBtn.addEventListener('click', function() {
-        window.print();
+        // PDF 저장 안내 표시
+        printGuide.style.display = 'block';
+        
+        // 스크롤 맨 위로 이동
+        window.scrollTo(0, 0);
+        
+        // 인쇄 전 준비
+        document.body.classList.add('printing');
+        
+        // 필요에 따라 인쇄 제목 설정
+        const skinType = document.getElementById('skin-type-name').textContent;
+        const beautyCode = document.getElementById('code-letter-1').textContent + 
+                          document.getElementById('code-letter-2').textContent + 
+                          document.getElementById('code-letter-3').textContent + 
+                          document.getElementById('code-letter-4').textContent;
+        
+        document.title = `Beauty Code ${beautyCode} - ${skinType} 진단결과`;
+        
+        // 잠시 지연 후 인쇄 실행 (렌더링 시간 확보)
+        setTimeout(function() {
+          // 인쇄 전에 PDF 저장 안내를 숨김
+          printGuide.style.display = 'none';
+          
+          setTimeout(function() {
+            window.print();
+            
+            // 인쇄 후 클래스 제거 및 안내 다시 표시
+            setTimeout(function() {
+              document.body.classList.remove('printing');
+              printGuide.style.display = 'block';
+            }, 1000);
+          }, 200);
+        }, 500);
       });
       
       // 재시작 버튼 이벤트 리스너
