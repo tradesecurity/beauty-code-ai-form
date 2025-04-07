@@ -3,102 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>피부 코드 진단 시스템</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>피부 진단 시스템</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Noto Sans KR', sans-serif;
-    }
-    
     body {
-      background-color: #f5f5f5;
-      color: #333;
+      font-family: 'Arial', sans-serif;
       line-height: 1.6;
+      margin: 0;
       padding: 20px;
+      background-color: #f5f5f5;
     }
     
     .container {
       max-width: 1000px;
       margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     
-    header {
+    h1, h2, h3 {
+      color: #3f51b5;
+    }
+    
+    .header {
       text-align: center;
       margin-bottom: 30px;
-      padding: 20px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
     }
     
-    h1 {
-      color: #3f51b5;
-      margin-bottom: 10px;
+    .survey-form {
+      margin-bottom: 30px;
     }
     
-    h2 {
-      color: #7986cb;
-      margin: 20px 0;
-    }
-    
-    .card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    .question {
       margin-bottom: 20px;
-      padding: 20px;
-    }
-
-    .main-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .survey-section {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    .result-section {
-      flex: 2;
-      min-width: 500px;
-    }
-    
-    .form-group {
-      margin-bottom: 15px;
-    }
-    
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
     }
     
     .options {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
     }
     
-    .option-label {
-      display: block;
-      font-size: 0.8rem;
-      text-align: center;
-      margin-top: 5px;
-    }
-    
-    .radio-group {
+    .option {
       display: flex;
-      flex-direction: column;
       align-items: center;
     }
     
-    input[type="radio"] {
-      margin-bottom: 5px;
+    .option label {
+      margin-left: 5px;
     }
     
     button {
@@ -106,566 +65,345 @@
       color: white;
       border: none;
       padding: 10px 20px;
-      font-size: 1rem;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
-      display: block;
-      margin: 20px auto;
-      width: 200px;
+      font-size: 16px;
+      margin-top: 20px;
     }
     
     button:hover {
-      background-color: #7986cb;
+      background-color: #303f9f;
     }
     
-    #resultSection {
+    #results {
       display: none;
-    }
-    
-    /* 결과 스타일 */
-    .report-header {
-      display: flex;
-      align-items: center;
-      padding-bottom: 15px;
-      border-bottom: 2px solid #eee;
-      margin-bottom: 20px;
-    }
-    
-    .report-logo {
-      font-size: 2rem;
-      margin-right: 15px;
-      color: #3f51b5;
-    }
-    
-    .report-title {
-      flex-grow: 1;
-    }
-    
-    .report-title h1 {
-      font-size: 1.8rem;
-      margin-bottom: 5px;
-    }
-    
-    .checklist-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-    }
-    
-    .checklist-table th, .checklist-table td {
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    
-    .checklist-table th {
-      background-color: #f2f2f2;
-      text-align: left;
-      width: 35%;
-    }
-    
-    .checklist-table th:first-child {
-      width: 50px;
-      text-align: center;
-    }
-    
-    .section-title {
-      display: flex;
-      align-items: center;
-      margin: 20px 0 15px;
-      font-size: 1.2rem;
-      color: #3f51b5;
-    }
-    
-    .section-title span {
-      margin-right: 10px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
     }
     
     .beauty-code {
       display: flex;
-      align-items: center;
+      gap: 10px;
       margin: 20px 0;
     }
     
-    .beauty-code-letter {
+    .code-letter {
       width: 50px;
       height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 10px;
-      border-radius: 10px;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
       background-color: #3f51b5;
-    }
-    
-    .type-description {
-      background-color: #f9f9f9;
-      padding: 15px;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
       border-radius: 5px;
-      margin: 15px 0;
-      border-left: 4px solid #3f51b5;
     }
     
-    .feature-list, .product-recommendations {
-      margin: 20px 0;
+    .result-section {
+      margin-bottom: 30px;
+    }
+    
+    .feature-list, .routine-list, .product-list {
+      padding-left: 20px;
     }
     
     .feature-item, .product-item {
-      display: flex;
-      align-items: flex-start;
       margin-bottom: 10px;
     }
     
-    .feature-icon, .product-icon {
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-      color: #3f51b5;
-    }
-    
-    .tip-box {
-      background-color: #fff8e1;
-      border-left: 4px solid #ffc107;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 5px;
-    }
-    
-    .footer-note {
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 30px;
-      text-align: center;
-      border-top: 1px solid #eee;
-      padding-top: 15px;
-    }
-    
-    .action-buttons {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-    }
-    
-    .action-button {
-      margin: 0 10px;
-      padding: 10px 20px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-    
-    .pdf-button {
-      background-color: #f44336;
-      color: white;
-    }
-    
-    .restart-button {
-      background-color: #2196f3;
-      color: white;
-    }
-    
-    .analysis-table {
+    .result-table {
       width: 100%;
       border-collapse: collapse;
       margin: 20px 0;
     }
     
-    .analysis-table th, .analysis-table td {
-      padding: 12px;
+    .result-table th, .result-table td {
       border: 1px solid #ddd;
+      padding: 10px;
     }
     
-    .analysis-table th {
-      background-color: #3f51b5;
-      color: white;
-      text-align: left;
+    .result-table th {
+      background-color: #f2f2f2;
     }
     
-    .care-routine {
-      margin: 20px 0;
-      padding: 15px;
-      background-color: #e8f5e9;
-      border-radius: 5px;
-      border-left: 4px solid #4caf50;
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
     }
     
-    .care-routine h4 {
-      margin-bottom: 10px;
-      color: #2e7d32;
-    }
-    
-    .care-routine ul {
-      padding-left: 20px;
-    }
-    
-    .care-routine li {
-      margin-bottom: 5px;
-    }
-
     @media print {
       .no-print {
         display: none;
       }
       
-      body {
+      body, .container {
         background-color: white;
-      }
-      
-      .container {
-        max-width: 100%;
         padding: 0;
-      }
-      
-      .main-container {
-        display: block;
-      }
-      
-      .survey-section {
-        display: none;
-      }
-      
-      .result-section {
-        width: 100%;
-      }
-      
-      .card {
-        box-shadow: none;
-        padding: 0;
-      }
-      
-      .type-description, .care-routine, .tip-box {
-        border-left: 1px solid #ddd;
-      }
-      
-      .beauty-code-letter {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
-      
-      .analysis-table th {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .main-container {
-        flex-direction: column;
-      }
-      
-      .options {
-        flex-direction: column;
-      }
-      
-      .radio-group {
-        flex-direction: row;
-        margin-bottom: 10px;
-        width: 100%;
-        justify-content: space-between;
-      }
-      
-      .option-label {
-        margin-left: 10px;
-        text-align: left;
-      }
-      
-      .action-buttons {
-        flex-direction: column;
-      }
-      
-      .action-button {
-        margin: 10px 0;
-      }
-      
-      .beauty-code {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .beauty-code-letter {
-        margin-bottom: 10px;
+        margin: 0;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>피부 코드 진단 시스템</h1>
-      <p>설문에 응답하여 당신만의 뷰티 코드를 확인해보세요!</p>
-    </header>
+    <div class="header">
+      <h1>피부 진단 시스템</h1>
+      <p>설문에 응답하여 당신만의 피부 타입을 확인해보세요</p>
+    </div>
     
-    <div class="main-container">
-      <!-- 설문 섹션 -->
-      <div class="survey-section card" id="surveySection">
-        <h2>피부 설문지</h2>
-        <form id="skinSurvey">
-          <div class="form-group">
-            <label>1. 성별</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="gender-female" name="gender" value="female" required>
-                <span class="option-label">여성</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="gender-male" name="gender" value="male">
-                <span class="option-label">남성</span>
-              </div>
-            </div>
+    <div class="survey-form" id="surveyForm">
+      <h2>피부 설문지</h2>
+      
+      <div class="question">
+        <h3>1. 성별</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female">여성</label>
           </div>
-          
-          <div class="form-group">
-            <label>2. 연령대</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="age-teens" name="age" value="10s" required>
-                <span class="option-label">10대</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="age-20s" name="age" value="20s">
-                <span class="option-label">20대</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="age-30s" name="age" value="30s">
-                <span class="option-label">30대</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="age-40s" name="age" value="40s">
-                <span class="option-label">40대</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="age-50s" name="age" value="50s">
-                <span class="option-label">50대</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="age-60s" name="age" value="60s">
-                <span class="option-label">60대 이상</span>
-              </div>
-            </div>
+          <div class="option">
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">남성</label>
           </div>
-          
-          <div class="form-group">
-            <label>3. 수분 섭취량</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="hydration-verylow" name="hydration" value="1" required>
-                <span class="option-label">매우 부족</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="hydration-low" name="hydration" value="2">
-                <span class="option-label">부족</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="hydration-medium" name="hydration" value="3">
-                <span class="option-label">보통</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="hydration-high" name="hydration" value="4">
-                <span class="option-label">충분</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="hydration-veryhigh" name="hydration" value="5">
-                <span class="option-label">매우 충분</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>4. 세안 후 당김</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="tightness-none" name="tightness" value="1" required>
-                <span class="option-label">전혀 없음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tightness-little" name="tightness" value="2">
-                <span class="option-label">약간 있음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tightness-medium" name="tightness" value="3">
-                <span class="option-label">보통</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tightness-often" name="tightness" value="4">
-                <span class="option-label">자주 느껴짐</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tightness-always" name="tightness" value="5">
-                <span class="option-label">항상 당김</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>5. 트러블 빈도</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="trouble-none" name="trouble" value="1" required>
-                <span class="option-label">없음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="trouble-rarely" name="trouble" value="2">
-                <span class="option-label">가끔</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="trouble-sometimes" name="trouble" value="3">
-                <span class="option-label">보통</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="trouble-often" name="trouble" value="4">
-                <span class="option-label">자주</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="trouble-always" name="trouble" value="5">
-                <span class="option-label">항상 있음</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>6. 피부 민감도</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="sensitivity-verylow" name="sensitivity" value="1" required>
-                <span class="option-label">매우 둔감</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sensitivity-low" name="sensitivity" value="2">
-                <span class="option-label">약간 둔감</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sensitivity-medium" name="sensitivity" value="3">
-                <span class="option-label">보통</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sensitivity-high" name="sensitivity" value="4">
-                <span class="option-label">민감</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sensitivity-veryhigh" name="sensitivity" value="5">
-                <span class="option-label">매우 민감</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>7. 피지 분비량</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="sebum-verylow" name="sebum" value="1" required>
-                <span class="option-label">매우 적음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sebum-low" name="sebum" value="2">
-                <span class="option-label">적음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sebum-medium" name="sebum" value="3">
-                <span class="option-label">보통</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sebum-high" name="sebum" value="4">
-                <span class="option-label">많음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="sebum-veryhigh" name="sebum" value="5">
-                <span class="option-label">매우 많음</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>8. T존/U존 특성</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="zone-alldry" name="zone" value="1" required>
-                <span class="option-label">전체 건성</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="zone-toily" name="zone" value="2">
-                <span class="option-label">T존만 지성</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="zone-uoily" name="zone" value="3">
-                <span class="option-label">U존만 지성</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="zone-alloily" name="zone" value="4">
-                <span class="option-label">전체 지성</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="zone-mixed" name="zone" value="5">
-                <span class="option-label">혼합성</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>9. 피부 혈색/톤</label>
-            <div class="options">
-              <div class="radio-group">
-                <input type="radio" id="tone-verybright" name="tone" value="1" required>
-                <span class="option-label">매우 밝음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tone-bright" name="tone" value="2">
-                <span class="option-label">밝음</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tone-medium" name="tone" value="3">
-                <span class="option-label">보통</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tone-dark" name="tone" value="4">
-                <span class="option-label">어두움</span>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="tone-verydark" name="tone" value="5">
-                <span class="option-label">매우 어두움</span>
-              </div>
-            </div>
-          </div>
-          
-          <button type="submit" id="submit-btn">결과 보기</button>
-        </form>
+        </div>
       </div>
       
-      <!-- 결과 섹션 -->
-      <div class="result-section card" id="resultSection">
-        <div class="report-header">
-          <div class="report-logo">💎</div>
-          <div class="report-title">
-            <h1>BEAUTY CODE AI 피부 진단 결과</h1>
+      <div class="question">
+        <h3>2. 연령대</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="age10s" name="age" value="10s" required>
+            <label for="age10s">10대</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="age20s" name="age" value="20s">
+            <label for="age20s">20대</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="age30s" name="age" value="30s">
+            <label for="age30s">30대</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="age40s" name="age" value="40s">
+            <label for="age40s">40대</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="age50s" name="age" value="50s">
+            <label for="age50s">50대</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="age60s" name="age" value="60s">
+            <label for="age60s">60대 이상</label>
           </div>
         </div>
-        
-        <div class="section-title">
-          <span>📋</span> 당신의 BEAUTY CODE
-        </div>
-        
-        <div>
-          <div class="beauty-code">
-            <div class="beauty-code-letter" id="codeLetter1">-</div>
-            <div class="beauty-code-letter" id="codeLetter2">-</div>
-            <div class="beauty-code-letter" id="codeLetter3">-</div>
-            <div class="beauty-code-letter" id="codeLetter4">-</div>
+      </div>
+      
+      <div class="question">
+        <h3>3. 수분 섭취량</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="hydration1" name="hydration" value="1" required>
+            <label for="hydration1">매우 부족</label>
           </div>
-          <h3 id="skinTypeName" style="text-align:center; margin-bottom:15px;"></h3>
-          <div id="typeDescription" class="type-description">
-            피부 타입 설명이 여기에 표시됩니다.
+          <div class="option">
+            <input type="radio" id="hydration2" name="hydration" value="2">
+            <label for="hydration2">부족</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="hydration3" name="hydration" value="3">
+            <label for="hydration3">보통</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="hydration4" name="hydration" value="4">
+            <label for="hydration4">충분</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="hydration5" name="hydration" value="5">
+            <label for="hydration5">매우 충분</label>
           </div>
         </div>
-        
-        <div class="section-title">
-          <span>🔬</span> 상세 피부 분석
+      </div>
+      
+      <div class="question">
+        <h3>4. 세안 후 당김</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="tightness1" name="tightness" value="1" required>
+            <label for="tightness1">전혀 없음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tightness2" name="tightness" value="2">
+            <label for="tightness2">약간 있음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tightness3" name="tightness" value="3">
+            <label for="tightness3">보통</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tightness4" name="tightness" value="4">
+            <label for="tightness4">자주 느껴짐</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tightness5" name="tightness" value="5">
+            <label for="tightness5">항상 당김</label>
+          </div>
         </div>
-        
-        <table class="analysis-table">
+      </div>
+      
+      <div class="question">
+        <h3>5. 트러블 빈도</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="trouble1" name="trouble" value="1" required>
+            <label for="trouble1">없음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="trouble2" name="trouble" value="2">
+            <label for="trouble2">가끔</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="trouble3" name="trouble" value="3">
+            <label for="trouble3">보통</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="trouble4" name="trouble" value="4">
+            <label for="trouble4">자주</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="trouble5" name="trouble" value="5">
+            <label for="trouble5">항상 있음</label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="question">
+        <h3>6. 피부 민감도</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="sensitivity1" name="sensitivity" value="1" required>
+            <label for="sensitivity1">매우 둔감</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sensitivity2" name="sensitivity" value="2">
+            <label for="sensitivity2">약간 둔감</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sensitivity3" name="sensitivity" value="3">
+            <label for="sensitivity3">보통</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sensitivity4" name="sensitivity" value="4">
+            <label for="sensitivity4">민감</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sensitivity5" name="sensitivity" value="5">
+            <label for="sensitivity5">매우 민감</label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="question">
+        <h3>7. 피지 분비량</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="sebum1" name="sebum" value="1" required>
+            <label for="sebum1">매우 적음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sebum2" name="sebum" value="2">
+            <label for="sebum2">적음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sebum3" name="sebum" value="3">
+            <label for="sebum3">보통</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sebum4" name="sebum" value="4">
+            <label for="sebum4">많음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sebum5" name="sebum" value="5">
+            <label for="sebum5">매우 많음</label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="question">
+        <h3>8. T존/U존 특성</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="zone1" name="zone" value="1" required>
+            <label for="zone1">전체 건성</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="zone2" name="zone" value="2">
+            <label for="zone2">T존만 지성</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="zone3" name="zone" value="3">
+            <label for="zone3">U존만 지성</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="zone4" name="zone" value="4">
+            <label for="zone4">전체 지성</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="zone5" name="zone" value="5">
+            <label for="zone5">혼합성</label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="question">
+        <h3>9. 피부 혈색/톤</h3>
+        <div class="options">
+          <div class="option">
+            <input type="radio" id="tone1" name="tone" value="1" required>
+            <label for="tone1">매우 밝음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tone2" name="tone" value="2">
+            <label for="tone2">밝음</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tone3" name="tone" value="3">
+            <label for="tone3">보통</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tone4" name="tone" value="4">
+            <label for="tone4">어두움</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="tone5" name="tone" value="5">
+            <label for="tone5">매우 어두움</label>
+          </div>
+        </div>
+      </div>
+      
+      <button type="button" id="submitBtn">결과 보기</button>
+    </div>
+    
+    <div id="results">
+      <h2>피부 진단 결과</h2>
+      
+      <div class="result-section">
+        <h3>당신의 뷰티 코드</h3>
+        <div class="beauty-code">
+          <div class="code-letter" id="letter1">-</div>
+          <div class="code-letter" id="letter2">-</div>
+          <div class="code-letter" id="letter3">-</div>
+          <div class="code-letter" id="letter4">-</div>
+        </div>
+        <h3 id="skinTypeName"></h3>
+        <p id="skinTypeDesc"></p>
+      </div>
+      
+      <div class="result-section">
+        <h3>상세 피부 분석</h3>
+        <table class="result-table">
           <tr>
             <th>항목</th>
             <th>분석 결과</th>
@@ -687,108 +425,77 @@
             <td id="toneResult"></td>
           </tr>
         </table>
+      </div>
+      
+      <div class="result-section">
+        <h3>주요 특징</h3>
+        <ul class="feature-list" id="featureList"></ul>
+      </div>
+      
+      <div class="result-section">
+        <h3>맞춤형 스킨케어 루틴</h3>
         
-        <div class="section-title">
-          <span>✅</span> 주요 특징
-        </div>
+        <h4>AM 루틴</h4>
+        <ol class="routine-list" id="amRoutine"></ol>
         
-        <div class="feature-list" id="featureList">
-          <!-- 특징 항목들이 여기에 동적으로 추가됩니다 -->
-        </div>
-        
-        <div class="section-title">
-          <span>📋</span> 맞춤형 스킨케어 루틴
-        </div>
-        
-        <div class="care-routine">
-          <h4>AM 루틴</h4>
-          <ul id="amRoutine">
-            <!-- AM 루틴 항목들이 여기에 동적으로 추가됩니다 -->
-          </ul>
-          
-          <h4 style="margin-top: 15px;">PM 루틴</h4>
-          <ul id="pmRoutine">
-            <!-- PM 루틴 항목들이 여기에 동적으로 추가됩니다 -->
-          </ul>
-        </div>
-        
-        <div class="section-title">
-          <span>🔒</span> 추천 제품
-        </div>
-        
-        <div class="product-recommendations" id="productList">
-          <!-- 제품 추천 목록이 여기에 동적으로 추가됩니다 -->
-        </div>
-        
-        <div class="tip-box">
-          <p><strong>TIP:</strong> 제품 테스트 전, 팔 안쪽에 먼저 발라보고 24시간 후 이상 반응 없을 시 사용하세요. 민감 피부는 새로운 제품 도입 시 패치 테스트가 매우 중요합니다.</p>
-        </div>
-        
-        <div class="section-title">
-          <span>🔍</span> 설문 응답 요약
-        </div>
-        
-        <table class="checklist-table">
+        <h4>PM 루틴</h4>
+        <ol class="routine-list" id="pmRoutine"></ol>
+      </div>
+      
+      <div class="result-section">
+        <h3>추천 제품</h3>
+        <ul class="product-list" id="productList"></ul>
+      </div>
+      
+      <div class="result-section">
+        <h3>설문 응답 요약</h3>
+        <table class="result-table">
           <tr>
-            <th>No.</th>
-            <th>질문 구분</th>
-            <th>답변 내용</th>
+            <th>질문</th>
+            <th>응답</th>
           </tr>
           <tr>
-            <td>1</td>
             <td>성별</td>
-            <td id="responseGender">-</td>
+            <td id="genderResult"></td>
           </tr>
           <tr>
-            <td>2</td>
             <td>연령대</td>
-            <td id="responseAge">-</td>
+            <td id="ageResult"></td>
           </tr>
           <tr>
-            <td>3</td>
             <td>수분 섭취량</td>
-            <td id="responseHydration">-</td>
+            <td id="hydrationSurvey"></td>
           </tr>
           <tr>
-            <td>4</td>
             <td>세안 후 당김</td>
-            <td id="responseTightness">-</td>
+            <td id="tightnessSurvey"></td>
           </tr>
           <tr>
-            <td>5</td>
             <td>트러블 빈도</td>
-            <td id="responseTrouble">-</td>
+            <td id="troubleSurvey"></td>
           </tr>
           <tr>
-            <td>6</td>
             <td>피부 민감도</td>
-            <td id="responseSensitivity">-</td>
+            <td id="sensitivitySurvey"></td>
           </tr>
           <tr>
-            <td>7</td>
             <td>피지 분비량</td>
-            <td id="responseSebum">-</td>
+            <td id="sebumSurvey"></td>
           </tr>
           <tr>
-            <td>8</td>
             <td>T존/U존 특성</td>
-            <td id="responseZone">-</td>
+            <td id="zoneSurvey"></td>
           </tr>
           <tr>
-            <td>9</td>
-            <td>피부 혈색</td>
-            <td id="responseTone">-</td>
+            <td>피부 혈색/톤</td>
+            <td id="toneSurvey"></td>
           </tr>
         </table>
-        
-        <div class="footer-note">
-          <p>주석: 이 피부 진단은 과학적 연구와 임상 데이터를 기반으로 작성되었습니다. 단, 개인차가 있을 수 있으며, 피부 상태는 환경, 계절, 건강 상태 등에 따라 변할 수 있습니다.</p>
-        </div>
-        
-        <div class="action-buttons no-print">
-          <button type="button" class="action-button pdf-button" id="printBtn">결과 PDF 저장</button>
-          <button type="button" class="action-button restart-button" id="resetBtn">다시 진단하기</button>
-        </div>
+      </div>
+      
+      <div class="action-buttons no-print">
+        <button id="printBtn">결과 PDF 저장</button>
+        <button id="resetBtn">다시 진단하기</button>
       </div>
     </div>
   </div>
@@ -796,19 +503,17 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // 요소 참조
-      const skinSurvey = document.getElementById('skinSurvey');
-      const surveySection = document.getElementById('surveySection');
-      const resultSection = document.getElementById('resultSection');
-      const printBtn = document.getElementById('printBtn');
+      const submitBtn = document.getElementById('submitBtn');
       const resetBtn = document.getElementById('resetBtn');
+      const printBtn = document.getElementById('printBtn');
+      const surveyForm = document.getElementById('surveyForm');
+      const results = document.getElementById('results');
       
-      // 뷰티 코드 매핑 데이터
-      const beautyCodeMapping = {
-        // 건조 + 민감
+      // 피부 타입 데이터
+      const skinTypes = {
         'DSCT': {
           name: '드라이 센서티브 클리어 타입',
-          description: '건조하고 민감한 피부로, 외부 자극에 예민하게 반응합니다. 트러블은 적은 편이나 건조함으로 인한 불편함이 있습니다.',
-          summary: '피부 장벽이 약해 외부 자극에 민감하고 수분 유지가 어려운 타입입니다. 보습과 진정에 중점을 둔 관리가 필요합니다.',
+          description: '피부 장벽이 약해 외부 자극에 민감하고 수분 유지가 어려운 타입입니다. 보습과 진정에 중점을 둔 관리가 필요합니다.',
           features: [
             '건조함과 당김이 심함',
             '자극에 민감하게 반응',
@@ -841,12 +546,9 @@
             tone: '피부 톤이 밝고 투명한 편'
           }
         },
-        
-        // 건조 + 민감 + 트러블
         'DSTT': {
           name: '드라이 센서티브 트러블 타입',
-          description: '건조하면서도 민감하고 트러블이 있는 복합적인 문제성 피부입니다.',
-          summary: '건조함과 민감함에 트러블까지 있어 관리가 까다로운 피부입니다. 과도한 각질 제거를 자제하고 수분과 진정에 중점을 두어야 합니다.',
+          description: '건조함과 민감함에 트러블까지 있어 관리가 까다로운 피부입니다. 과도한 각질 제거를 자제하고 수분과 진정에 중점을 두어야 합니다.',
           features: [
             '건조함과 트러블이 동시에 나타남',
             '외부 자극에 민감하게 반응',
@@ -879,12 +581,9 @@
             tone: '피부 톤이 밝은 편'
           }
         },
-
-        // 균형 + 민감
         'BSCT': {
           name: '밸런스 센서티브 클리어 타입',
-          description: '수분과 유분이 균형을 이루며, 외부 자극에 민감하게 반응하는 피부입니다. 트러블은 적은 편이고 피부 톤이 맑은 편입니다.',
-          summary: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
+          description: '환경 변화에 민감하게 반응하는 피부로, 붉어짐, 자극, 따가움이 자주 발생합니다. 피부 장벽이 약화될 수 있으므로 진정과 보습 중심의 관리가 필요합니다.',
           features: [
             '붉어짐과 자극에 민감하게 반응함',
             '유수분 밸런스가 불안정함',
@@ -916,12 +615,9 @@
             tone: '피부 톤이 밝고 투명한 편'
           }
         },
-
-        // 지성 + 민감 + 트러블
         'OSTT': {
           name: '오일리 센서티브 트러블 타입',
-          description: '피지 분비가 많으면서도 외부 자극에 민감한 피부입니다. 트러블이 자주 발생하고 피부 톤은 투명한 편입니다.',
-          summary: '피지 조절과 함께 자극 없는 제품으로 진정 케어가 필요합니다. 과도한 세안은 오히려 유분 분비를 촉진할 수 있습니다.',
+          description: '피지 조절과 함께 자극 없는 제품으로 진정 케어가 필요합니다. 과도한 세안은 오히려 유분 분비를 촉진할 수 있습니다.',
           features: [
             '번들거림과 트러블이 동시에 발생',
             '자극적인 성분에 민감하게 반응',
@@ -956,73 +652,59 @@
         }
       };
       
-      // 응답 텍스트 매핑
-      const responseTextMapping = {
-        gender: {
-          'female': '여성',
-          'male': '남성'
-        },
-        age: {
-          '10s': '10대',
-          '20s': '20대',
-          '30s': '30대',
-          '40s': '40대',
-          '50s': '50대',
-          '60s': '60대 이상'
-        },
-        hydration: {
-          '1': '매우 부족',
-          '2': '부족',
-          '3': '보통',
-          '4': '충분',
-          '5': '매우 충분'
-        },
-        tightness: {
-          '1': '전혀 없음',
-          '2': '약간 있음',
-          '3': '보통',
-          '4': '자주 느껴짐',
-          '5': '항상 당김'
-        },
-        trouble: {
-          '1': '없음',
-          '2': '가끔',
-          '3': '보통',
-          '4': '자주',
-          '5': '항상 있음'
-        },
-        sensitivity: {
-          '1': '매우 둔감',
-          '2': '약간 둔감',
-          '3': '보통',
-          '4': '민감',
-          '5': '매우 민감'
-        },
-        sebum: {
-          '1': '매우 적음',
-          '2': '적음',
-          '3': '보통',
-          '4': '많음',
-          '5': '매우 많음'
-        },
-        zone: {
-          '1': '전체 건성',
-          '2': 'T존만 지성',
-          '3': 'U존만 지성',
-          '4': '전체 지성',
-          '5': '혼합성'
-        },
-        tone: {
-          '1': '매우 밝음',
-          '2': '밝음',
-          '3': '보통',
-          '4': '어두움',
-          '5': '매우 어두움'
-        }
+      // 응답 매핑
+      const responseMap = {
+        gender: { 'female': '여성', 'male': '남성' },
+        age: { '10s': '10대', '20s': '20대', '30s': '30대', '40s': '40대', '50s': '50대', '60s': '60대 이상' },
+        hydration: { '1': '매우 부족', '2': '부족', '3': '보통', '4': '충분', '5': '매우 충분' },
+        tightness: { '1': '전혀 없음', '2': '약간 있음', '3': '보통', '4': '자주 느껴짐', '5': '항상 당김' },
+        trouble: { '1': '없음', '2': '가끔', '3': '보통', '4': '자주', '5': '항상 있음' },
+        sensitivity: { '1': '매우 둔감', '2': '약간 둔감', '3': '보통', '4': '민감', '5': '매우 민감' },
+        sebum: { '1': '매우 적음', '2': '적음', '3': '보통', '4': '많음', '5': '매우 많음' },
+        zone: { '1': '전체 건성', '2': 'T존만 지성', '3': 'U존만 지성', '4': '전체 지성', '5': '혼합성' },
+        tone: { '1': '매우 밝음', '2': '밝음', '3': '보통', '4': '어두움', '5': '매우 어두움' }
       };
       
-      // 모든 가능한 코드 조합 생성 함수
-      function generateAllCodes() {
+      // 기본 피부 타입 생성 함수
+      function generateBasicSkinType(m, s, t, tone) {
+        return {
+          name: `${m === 'D' ? '건조' : m === 'B' ? '균형' : '지성'} ${s === 'R' ? '내성' : '민감'} ${t === 'C' ? '클리어' : '트러블'} ${tone === 'M' ? '무광' : '광채'} 타입`,
+          description: `${m === 'D' ? '보습' : m === 'B' ? '균형 유지' : '유분 조절'}과 ${s === 'S' ? '진정' : '활력'} 케어가 중요합니다. ${t === 'T' ? '트러블 관리에 신경써야 합니다.' : ''}`,
+          features: [
+            `${m === 'D' ? '건조함 개선 필요' : m === 'B' ? '균형 잡힌 유수분 관리' : '과도한 유분 조절 필요'}`,
+            `${s === 'S' ? '자극에 민감하게 반응' : '외부 자극에 강한 피부'}`,
+            `${t === 'T' ? '트러블 관리 필요' : '깨끗한 피부 유지'}`
+          ],
+          products: [
+            `${m === 'D' ? '고보습 토너' : m === 'B' ? '밸런싱 토너' : '피지 조절 토너'}`,
+            `${s === 'S' ? '진정 에센스' : '활력 에센스'}`,
+            `${t === 'T' ? '트러블 케어 세럼' : '영양 공급 세럼'}`
+          ],
+          amRoutine: [
+            `${m === 'D' ? '부드러운 크림 타입 클렌저로 세안' : m === 'B' ? '젤 타입 클렌저로 세안' : '포밍 클렌저로 세안'}`,
+            `${s === 'S' ? '저자극 토너 사용' : '밸런싱 토너 사용'}`,
+            `수분 에센스 사용`,
+            `${m === 'D' ? '보습 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '오일프리 수분 크림 사용'}`,
+            `자외선 차단제 사용`
+          ],
+          pmRoutine: [
+            `${m === 'D' ? '오일 클렌저로 메이크업 제거' : '더블 클렌징으로 메이크업 제거'}`,
+            `${s === 'S' ? '저자극 토너 사용' : '피부결 정돈 토너 사용'}`,
+            `${t === 'T' ? '트러블 케어 세럼 사용' : '영양 세럼 사용'}`,
+            `${m === 'D' ? '영양 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '가벼운 수분 크림 사용'}`,
+            `주 2-3회 ${m === 'D' ? '보습' : t === 'T' ? '진정' : '영양'} 마스크팩 사용`
+          ],
+          analysis: {
+            hydration: m === 'D' ? '건조한 편으로 수분 공급이 필요함' : m === 'B' ? '적절한 수분 밸런스 유지' : '유분기가 많은 편',
+            sensitivity: s === 'R' ? '외부 자극에 강한 편' : '자극에 민감하게 반응하는 편',
+            trouble: t === 'C' ? '트러블이 거의 없는 깨끗한 피부' : '트러블이 자주 발생하는 편',
+            tone: tone === 'M' ? '피부 톤이 다소 탁하거나 균일하지 않음' : '피부 톤이 밝고 투명한 편'
+          }
+        };
+      }
+      
+      // 모든 가능한 피부 타입 생성
+      function generateAllSkinTypes() {
         const moistureTypes = ['D', 'B', 'O']; // Dry, Balanced, Oily
         const sensitivityTypes = ['R', 'S']; // Resistant, Sensitive
         const troubleTypes = ['C', 'T']; // Clear, Trouble
@@ -1033,43 +715,8 @@
             troubleTypes.forEach(t => {
               toneTypes.forEach(tone => {
                 const code = m + s + t + tone;
-                // 기본 데이터가 없는 경우에만 기본 데이터 생성
-                if (!beautyCodeMapping[code]) {
-                  beautyCodeMapping[code] = {
-                    name: `${m === 'D' ? '건조' : m === 'B' ? '균형' : '지성'} ${s === 'R' ? '내성' : '민감'} ${t === 'C' ? '클리어' : '트러블'} ${tone === 'M' ? '무광' : '광채'} 타입`,
-                    description: `${m === 'D' ? '건조하고' : m === 'B' ? '균형 잡히고' : '지성이고'} ${s === 'R' ? '민감하지 않으며' : '민감하며'}, 트러블이 ${t === 'C' ? '적고' : '많고'} 피부 톤이 ${tone === 'M' ? '탁한' : '맑은'} 편의 피부`,
-                    summary: `${m === 'D' ? '보습' : m === 'B' ? '균형 유지' : '유분 조절'}과 ${s === 'S' ? '진정' : '활력'} 케어가 중요합니다. ${t === 'T' ? '트러블 관리에 신경써야 합니다.' : ''}`,
-                    features: [
-                      `${m === 'D' ? '건조함 개선 필요' : m === 'B' ? '균형 잡힌 유수분 관리' : '과도한 유분 조절 필요'}`,
-                      `${s === 'S' ? '자극에 민감하게 반응' : '외부 자극에 강한 피부'}`,
-                      `${t === 'T' ? '트러블 관리 필요' : '깨끗한 피부 유지'}`
-                    ],
-                    products: [
-                      `${m === 'D' ? '고보습 토너' : m === 'B' ? '밸런싱 토너' : '피지 조절 토너'}`,
-                      `${s === 'S' ? '진정 에센스' : '활력 에센스'}`,
-                      `${t === 'T' ? '트러블 케어 세럼' : '영양 공급 세럼'}`
-                    ],
-                    amRoutine: [
-                      `${m === 'D' ? '부드러운 크림 타입 클렌저로 세안' : m === 'B' ? '젤 타입 클렌저로 세안' : '포밍 클렌저로 세안'}`,
-                      `${s === 'S' ? '저자극 토너 사용' : '밸런싱 토너 사용'}`,
-                      `수분 에센스 사용`,
-                      `${m === 'D' ? '보습 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '오일프리 수분 크림 사용'}`,
-                      `자외선 차단제 사용`
-                    ],
-                    pmRoutine: [
-                      `${m === 'D' ? '오일 클렌저로 메이크업 제거' : '더블 클렌징으로 메이크업 제거'}`,
-                      `${s === 'S' ? '저자극 토너 사용' : '피부결 정돈 토너 사용'}`,
-                      `${t === 'T' ? '트러블 케어 세럼 사용' : '영양 세럼 사용'}`,
-                      `${m === 'D' ? '영양 크림 사용' : m === 'B' ? '밸런싱 크림 사용' : '가벼운 수분 크림 사용'}`,
-                      `주 2-3회 ${m === 'D' ? '보습' : t === 'T' ? '진정' : '영양'} 마스크팩 사용`
-                    ],
-                    analysis: {
-                      hydration: m === 'D' ? '건조한 편으로 수분 공급이 필요함' : m === 'B' ? '적절한 수분 밸런스 유지' : '유분기가 많은 편',
-                      sensitivity: s === 'R' ? '외부 자극에 강한 편' : '자극에 민감하게 반응하는 편',
-                      trouble: t === 'C' ? '트러블이 거의 없는 깨끗한 피부' : '트러블이 자주 발생하는 편',
-                      tone: tone === 'M' ? '피부 톤이 다소 탁하거나 균일하지 않음' : '피부 톤이 밝고 투명한 편'
-                    }
-                  };
+                if (!skinTypes[code]) {
+                  skinTypes[code] = generateBasicSkinType(m, s, t, tone);
                 }
               });
             });
@@ -1077,67 +724,205 @@
         });
       }
       
-      // 모든 코드 조합 생성 실행
-      generateAllCodes();
+      // 모든 가능한 피부 타입 생성
+      generateAllSkinTypes();
       
       // 결과 표시 함수
-      function displayResults(beautyCode) {
-        // 뷰티 코드 정보 가져오기
-        const codeInfo = beautyCodeMapping[beautyCode] || {
-          name: '기본 타입',
-          description: '피부 분석 결과를 찾을 수 없습니다.',
-          summary: '더 정확한 분석을 위해 다시 진단해보세요.',
-          features: [],
-          products: [],
-          amRoutine: [],
-          pmRoutine: [],
-          analysis: {
-            hydration: '정보 없음',
-            sensitivity: '정보 없음',
-            trouble: '정보 없음',
-            tone: '정보 없음'
-          }
-        };
-        
-        // 응답 정보 표시
-        if (document.querySelector('input[name="gender"]:checked')) {
-          document.getElementById('responseGender').textContent = responseTextMapping.gender[document.querySelector('input[name="gender"]:checked').value];
-        }
-        if (document.querySelector('input[name="age"]:checked')) {
-          document.getElementById('responseAge').textContent = responseTextMapping.age[document.querySelector('input[name="age"]:checked').value];
-        }
-        if (document.querySelector('input[name="hydration"]:checked')) {
-          document.getElementById('responseHydration').textContent = responseTextMapping.hydration[document.querySelector('input[name="hydration"]:checked').value];
-        }
-        if (document.querySelector('input[name="tightness"]:checked')) {
-          document.getElementById('responseTightness').textContent = responseTextMapping.tightness[document.querySelector('input[name="tightness"]:checked').value];
-        }
-        if (document.querySelector('input[name="trouble"]:checked')) {
-          document.getElementById('responseTrouble').textContent = responseTextMapping.trouble[document.querySelector('input[name="trouble"]:checked').value];
-        }
-        if (document.querySelector('input[name="sensitivity"]:checked')) {
-          document.getElementById('responseSensitivity').textContent = responseTextMapping.sensitivity[document.querySelector('input[name="sensitivity"]:checked').value];
-        }
-        if (document.querySelector('input[name="sebum"]:checked')) {
-          document.getElementById('responseSebum').textContent = responseTextMapping.sebum[document.querySelector('input[name="sebum"]:checked').value];
-        }
-        if (document.querySelector('input[name="zone"]:checked')) {
-          document.getElementById('responseZone').textContent = responseTextMapping.zone[document.querySelector('input[name="zone"]:checked').value];
-        }
-        if (document.querySelector('input[name="tone"]:checked')) {
-          document.getElementById('responseTone').textContent = responseTextMapping.tone[document.querySelector('input[name="tone"]:checked').value];
-        }
+      function displayResults(code) {
+        const skinType = skinTypes[code] || generateBasicSkinType(code[0], code[1], code[2], code[3]);
         
         // 뷰티 코드 표시
-        document.getElementById('skinTypeName').textContent = codeInfo.name;
-        document.getElementById('codeLetter1').textContent = beautyCode[0];
-        document.getElementById('codeLetter2').textContent = beautyCode[1];
-        document.getElementById('codeLetter3').textContent = beautyCode[2];
-        document.getElementById('codeLetter4').textContent = beautyCode[3];
-        document.getElementById('typeDescription').textContent = codeInfo.summary;
+        document.getElementById('letter1').textContent = code[0];
+        document.getElementById('letter2').textContent = code[1];
+        document.getElementById('letter3').textContent = code[2];
+        document.getElementById('letter4').textContent = code[3];
+        
+        // 피부 타입 이름 및 설명 표시
+        document.getElementById('skinTypeName').textContent = skinType.name;
+        document.getElementById('skinTypeDesc').textContent = skinType.description;
         
         // 분석 결과 표시
-        document.getElementById('hydrationResult').textContent = codeInfo.analysis.hydration;
-        document.getElementById('sensitivityResult').textContent = codeInfo.analysis.sensitivity;
-        document.getElementById('troubleResult').textContent = codeInfo.analysis.trouble;
-        document.getElementById('toneResult').textContent = codeInfo.analysis.tone;
+        document.getElementById('hydrationResult').textContent = skinType.analysis.hydration;
+        document.getElementById('sensitivityResult').textContent = skinType.analysis.sensitivity;
+        document.getElementById('troubleResult').textContent = skinType.analysis.trouble;
+        document.getElementById('toneResult').textContent = skinType.analysis.tone;
+        
+        // 특징 목록 표시
+        const featureList = document.getElementById('featureList');
+        featureList.innerHTML = '';
+        skinType.features.forEach(feature => {
+          const li = document.createElement('li');
+          li.textContent = feature;
+          featureList.appendChild(li);
+        });
+        
+        // AM 루틴 표시
+        const amRoutine = document.getElementById('amRoutine');
+        amRoutine.innerHTML = '';
+        skinType.amRoutine.forEach(step => {
+          const li = document.createElement('li');
+          li.textContent = step;
+          amRoutine.appendChild(li);
+        });
+        
+        // PM 루틴 표시
+        const pmRoutine = document.getElementById('pmRoutine');
+        pmRoutine.innerHTML = '';
+        skinType.pmRoutine.forEach(step => {
+          const li = document.createElement('li');
+          li.textContent = step;
+          pmRoutine.appendChild(li);
+        });
+        
+        // 제품 추천 표시
+        const productList = document.getElementById('productList');
+        productList.innerHTML = '';
+        skinType.products.forEach(product => {
+          const li = document.createElement('li');
+          li.textContent = product;
+          productList.appendChild(li);
+        });
+        
+        // 설문 응답 표시
+        document.getElementById('genderResult').textContent = getSelectedValue('gender', responseMap.gender);
+        document.getElementById('ageResult').textContent = getSelectedValue('age', responseMap.age);
+        document.getElementById('hydrationSurvey').textContent = getSelectedValue('hydration', responseMap.hydration);
+        document.getElementById('tightnessSurvey').textContent = getSelectedValue('tightness', responseMap.tightness);
+        document.getElementById('troubleSurvey').textContent = getSelectedValue('trouble', responseMap.trouble);
+        document.getElementById('sensitivitySurvey').textContent = getSelectedValue('sensitivity', responseMap.sensitivity);
+        document.getElementById('sebumSurvey').textContent = getSelectedValue('sebum', responseMap.sebum);
+        document.getElementById('zoneSurvey').textContent = getSelectedValue('zone', responseMap.zone);
+        document.getElementById('toneSurvey').textContent = getSelectedValue('tone', responseMap.tone);
+        
+        // 결과 섹션 표시
+        surveyForm.style.display = 'none';
+        results.style.display = 'block';
+      }
+      
+      // 라디오 버튼 선택 값 가져오기
+      function getSelectedValue(name, mapping) {
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        return selected ? mapping[selected.value] : '-';
+      }
+      
+      // 피부 코드 생성 함수
+      function generateSkinCode() {
+        // 필수 입력 확인
+        const requiredInputs = ['gender', 'age', 'hydration', 'tightness', 'trouble', 'sensitivity', 'sebum', 'zone', 'tone'];
+        for (const input of requiredInputs) {
+          if (!document.querySelector(`input[name="${input}"]:checked`)) {
+            alert(`${input} 항목을 선택해주세요.`);
+            return null;
+          }
+        }
+        
+        // 폼 데이터 수집
+        const hydrationValue = parseInt(document.querySelector('input[name="hydration"]:checked').value);
+        const tightnessValue = parseInt(document.querySelector('input[name="tightness"]:checked').value);
+        const troubleValue = parseInt(document.querySelector('input[name="trouble"]:checked').value);
+        const sensitivityValue = parseInt(document.querySelector('input[name="sensitivity"]:checked').value);
+        const sebumValue = parseInt(document.querySelector('input[name="sebum"]:checked').value);
+        const zoneValue = parseInt(document.querySelector('input[name="zone"]:checked').value);
+        const toneValue = parseInt(document.querySelector('input[name="tone"]:checked').value);
+        
+        // 수분 점수 계산
+        const moistureScore = (hydrationValue + (6 - tightnessValue) + (6 - sebumValue) + (6 - zoneValue)) / 4;
+        
+        // 뷰티 코드 생성
+        let code = '';
+        
+        // 첫 번째 자리: 수분 상태
+        if (moistureScore <= 2.5) {
+          code += 'D'; // Dry
+        } else if (moistureScore <= 3.5) {
+          code += 'B'; // Balanced
+        } else {
+          code += 'O'; // Oily
+        }
+        
+        // 두 번째 자리: 민감도
+        if (sensitivityValue <= 2.5) {
+          code += 'R'; // Resistant
+        } else {
+          code += 'S'; // Sensitive
+        }
+        
+        // 세 번째 자리: 트러블 빈도
+        if (troubleValue <= 2.5) {
+          code += 'C'; // Clear
+        } else {
+          code += 'T'; // Trouble
+        }
+        
+        // 네 번째 자리: 피부 톤/혈색
+        if (toneValue <= 2.5) {
+          code += 'M'; // Matte
+        } else {
+          code += 'T'; // Translucent
+        }
+        
+        return code;
+      }
+      
+      // 결과 보기 버튼 클릭 이벤트
+      submitBtn.addEventListener('click', function() {
+        const skinCode = generateSkinCode();
+        if (skinCode) {
+          displayResults(skinCode);
+          // URL에 코드 추가
+          const url = new URL(window.location);
+          url.searchParams.set('code', skinCode);
+          window.history.replaceState({}, '', url);
+        }
+      });
+      
+      // 인쇄 버튼 클릭 이벤트
+      printBtn.addEventListener('click', function() {
+        window.print();
+      });
+      
+      // 재시작 버튼 클릭 이벤트
+      resetBtn.addEventListener('click', function() {
+        // 모든 라디오 버튼 선택 해제
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+          input.checked = false;
+        });
+        
+        // 결과 숨기고 설문 표시
+        results.style.display = 'none';
+        surveyForm.style.display = 'block';
+        
+        // URL에서 코드 파라미터 제거
+        const url = new URL(window.location);
+        url.searchParams.delete('code');
+        window.history.replaceState({}, '', url);
+      });
+      
+      // URL 파라미터 확인
+      function checkUrlParam() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code && code.length === 4) {
+          const validFirstChars = ['D', 'B', 'O'];
+          const validSecondChars = ['R', 'S'];
+          const validThirdChars = ['C', 'T'];
+          const validFourthChars = ['M', 'T'];
+          
+          if (
+            validFirstChars.includes(code[0]) &&
+            validSecondChars.includes(code[1]) &&
+            validThirdChars.includes(code[2]) &&
+            validFourthChars.includes(code[3])
+          ) {
+            displayResults(code);
+          }
+        }
+      }
+      
+      // 페이지 로드 시 URL 파라미터 확인
+      checkUrlParam();
+    });
+  </script>
+</body>
+</html>
